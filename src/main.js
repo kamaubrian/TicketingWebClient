@@ -6,8 +6,6 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import * as firebase from 'firebase'
-
-
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',
   secondary: '#424242',
@@ -18,7 +16,6 @@ Vue.use(Vuetify, { theme: {
   warning: '#FFC107',
   primarydark:'#23283a'
 }});
-
 Vue.config.productionTip = false
 
 new Vue({
