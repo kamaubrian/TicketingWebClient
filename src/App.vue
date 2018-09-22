@@ -41,7 +41,7 @@
     </v-content>
 
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2018</span>
+      <span>MetroTrans Inc.&copy; 2018</span>
     </v-footer>
   </v-app>
 </template>
@@ -68,6 +68,11 @@ export default {
           icon:'people',
           title:'Our Clientele',
           link:'/customers'
+        },
+        {
+          icon:'confirmation_number',
+          title:'Tickets',
+          link:'booked'
         }
       ],
       miniVariant: false,
