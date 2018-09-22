@@ -1,9 +1,11 @@
 .DS_Store
 node_modules/
+config/prod.env.js
+config/dev.env.js
 /dist/
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
+yarn-error.loggit*
 /test/unit/coverage/
 /test/e2e/reports/
 selenium-debug.log
