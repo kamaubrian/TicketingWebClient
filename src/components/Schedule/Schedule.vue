@@ -1,7 +1,6 @@
 <template>
   <v-layout>
     <v-container grid-list-md fluid>
-
       <v-layout row wrap v-if="loading">
         <v-flex xs12 class="text-xs-center">
           <v-progress-circular indeterminate class="primary--text"
@@ -81,7 +80,31 @@
           <v-card>
             <v-card-title>
               <h4>Saved Bus Schedules</h4>
+              <v-spacer></v-spacer>
+              <v-text-field
+                name="Search"
+                label="Search Schedule"
+                v-model="search"
+                append-icon="search"></v-text-field>
             </v-card-title>
+            <v-card-text>
+              <v-layout row wrap>
+                <v-flex xs12>
+                    <v-data-table
+                    :headers ="headers"
+                    :items="schedules"
+                    :search="search">
+                     <template slot="items" slot-scope="props">
+                        <td>{{props.item.arrivalDestination}}</td>
+                       <td class="text-xs-right">{{ props.item.arrivalDestination }}</td>
+                       <td class="text-xs-right">{{ props.item.timeTaken }}</td>
+                       <td class="text-xs-right">{{ props.item.pricePerTrip }}</td>
+                       <td class="text-xs-right">{{ props.item.departureTime }}</td>
+                     </template>
+                    </v-data-table>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -98,8 +121,28 @@
         routeTaken:'',
         pricePerTrip:'',
         departureTime:'',
-
-        schedules:{}
+        search:'',
+        headers:[
+          {
+            text:'From',
+            align:'left',
+            sortable:false,
+            value:'departureLocation'
+          },
+          {text:'Destination',value:'arrivalDestination'},
+          {text:'Duration',value:'timeTaken'},
+          {text:'Price',value:'pricePerTrip'},
+          {text:'Leaves At',value:'departureTime'}
+        ],
+        schedules:[
+          {
+            departureLocation:'',
+            arrivalDestination:'',
+            timeTaken:'',
+            pricePerTrip:'',
+            departureTime:'',
+          }
+        ]
       }
     },
     methods:{
@@ -128,12 +171,11 @@
         return this.$store.getters.loading
       },
 
+
     },
     mounted(){
       this.$store.dispatch('loadSchedule');
-      this.schedules = this.$store.getters.loadedSchedules;
-      console.log(this.schedules);
-
+      this.schedules = this.$store.state.loadedSchedules;
     }
 
   }

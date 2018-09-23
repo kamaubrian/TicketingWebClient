@@ -5,16 +5,14 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-      loadedSchedules:[
-        {
-          departureLocation: 'Daystar University',
-          arrivalDestination: 'Nairobi',
-          timeTaken: '2hrs',
-          pricePerTrip: '150',
-          routeTaken: 'via Mombasa Road',
-          departureTime: '11:00am'
-        }
-      ],
+      loadedSchedules:[{
+        departureLocation:'',
+        arrivalDestination:'',
+        timeTaken:'',
+        routeTaken:'',
+        pricePerTrip:'',
+        departureTime:'',
+      }],
       user:null,
       loading:false,
       error:null
@@ -52,8 +50,7 @@ export const store = new Vuex.Store({
         firebase.database().ref("Schedule").push(schedule)
           .then((data)=>{
             const key = data.key;
-            console.log(data);
-            commit('createSchedule',{...schedule,id:key})
+            commit('createSchedule',{...schedule,id:key});
             commit('setLoading',false);
           })
           .catch((error)=>{
@@ -80,9 +77,9 @@ export const store = new Vuex.Store({
                   departureTime:objects[key].departureTime
               });
             }
-            console.log(schedules);
             commit('setLoading',false);
             commit('setLoadedSchedules',schedules);
+            //console.log(schedules);
           })
           .catch((error)=>{
               commit('setLoading',false);
