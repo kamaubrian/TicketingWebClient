@@ -7,7 +7,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import * as firebase from 'firebase'
 import {store} from './store'
-
+import {sync} from 'vuex-router-sync'
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',
   secondary: '#424242',
@@ -20,6 +20,8 @@ Vue.use(Vuetify, { theme: {
 }});
 Vue.config.productionTip = false
 
+
+sync(store,router);
 new Vue({
   el: '#app',
   router,
