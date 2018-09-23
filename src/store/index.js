@@ -4,7 +4,6 @@ import * as firebase from 'firebase';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-
     state:{
       loadedSchedules:[
         {
@@ -24,10 +23,21 @@ export const store = new Vuex.Store({
   mutations:{
       createSchedule(state,payload){
         state.loadedSchedules.push(payload);
+      },
+      setLoading(state,payload){
+        state.loading = payload;
+      },
+      setError(state,payload){
+        state.error=payload;
+      },
+      clearError(state,payload){
+        state.error = null;
       }
   },
   actions:{
       onCreateSchedule({commit,getters},payload){
+        commit('setLoading',true);
+        commit('clearError');
         const schedule = {
           departureLocation: payload.departureLocation,
           arrivalDestination: payload.arrivalDestination,
@@ -41,11 +51,25 @@ export const store = new Vuex.Store({
             const key = data.key;
             console.log(data);
             commit('createSchedule',{...schedule,id:key})
+            commit('setLoading',false);
           })
           .catch((error)=>{
             console.log(error);
+            commit('setLoading',false);
+            commit('setError',error);
           })
 
+      },
+      clearErrors({commit}){
+        commit('clearError');
+      }
+  },
+  getters:{
+      error(state){
+        return state.error;
+      },
+      loading(state){
+        return state.loading;
       }
   }
 
