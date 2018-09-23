@@ -32,6 +32,9 @@ export const store = new Vuex.Store({
       },
       clearError(state,payload){
         state.error = null;
+      },
+      setLoadedSchedules(state,payload){
+        state.loadedSchedules=payload;
       }
   },
   actions:{
@@ -60,6 +63,33 @@ export const store = new Vuex.Store({
           })
 
       },
+      loadSchedule({commit}){
+        commit('setLoading',true);
+        firebase.database().ref('Schedule').once('value')
+          .then(data=>{
+            const schedules =[];
+            const objects = data.val();
+            for(let key in objects){
+              schedules.push({
+                  id:key,
+                  departureLocation:objects[key].departureLocation,
+                  arrivalDestination:objects[key].arrivalDestination,
+                  timeTaken:objects[key].timeTaken,
+                  routeTaken:objects[key].routeTaken,
+                  pricePerTrip:objects[key].pricePerTrip,
+                  departureTime:objects[key].departureTime
+              });
+            }
+            console.log(schedules);
+            commit('setLoading',false);
+            commit('setLoadedSchedules',schedules);
+          })
+          .catch((error)=>{
+              commit('setLoading',false);
+              commit('setError',error);
+              console.log(error);
+          });
+      },
       clearErrors({commit}){
         commit('clearError');
       }
@@ -70,7 +100,10 @@ export const store = new Vuex.Store({
       },
       loading(state){
         return state.loading;
-      }
+      },
+    loadedSchedules(state){
+        return state.loadedSchedules;
+    }
   }
 
 });

@@ -1,7 +1,16 @@
 <template>
   <v-layout>
     <v-container grid-list-md fluid>
-      <v-layout row wrap>
+
+      <v-layout row wrap v-if="loading">
+        <v-flex xs12 class="text-xs-center">
+          <v-progress-circular indeterminate class="primary--text"
+                               :width="7"
+                               :size="70"
+          ></v-progress-circular>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap v-else>
         <v-flex xs12 sm6>
           <v-card>
             <v-card-title>
@@ -88,7 +97,9 @@
         timeTaken:'',
         routeTaken:'',
         pricePerTrip:'',
-        departureTime:''
+        departureTime:'',
+
+        schedules:{}
       }
     },
     methods:{
@@ -112,7 +123,18 @@
         formIsValid(){
             return this.departureLocation !== '' && this.arrivalDestination!=='' && this.timeTaken!==''
                 && this.routeTaken!=='' && this.pricePerTrip!=='' && this.departureTime!==''
-        }
+        },
+      loading(){
+        return this.$store.getters.loading
+      },
+
+    },
+    mounted(){
+      this.$store.dispatch('loadSchedule');
+      this.schedules = this.$store.getters.loadedSchedules;
+      console.log(this.schedules);
+
     }
+
   }
 </script>
