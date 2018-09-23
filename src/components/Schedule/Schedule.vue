@@ -93,8 +93,10 @@
                     <v-data-table
                     :headers ="headers"
                     :items="schedules"
-                    :search="search">
-                     <template slot="items" slot-scope="props">
+                    :search="search"
+                    >
+                      <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+                      <template slot="items" slot-scope="props">
                         <td>{{props.item.arrivalDestination}}</td>
                        <td class="text-xs-right">{{ props.item.arrivalDestination }}</td>
                        <td class="text-xs-right">{{ props.item.timeTaken }}</td>
@@ -110,6 +112,7 @@
       </v-layout>
     </v-container>
   </v-layout>
+
 </template>
 <script>
   export default {

@@ -1,13 +1,14 @@
 <template>
   <v-app>
     <v-navigation-drawer
-      persistent
+      persitent
       :mini-variant="miniVariant"
       :clipped="clipped"
       v-model="drawer"
       enable-resize-watcher
       fixed
       app
+      absolute
     >
       <v-divider></v-divider>
       <v-list>
@@ -34,7 +35,7 @@
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
 
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title> <router-link to="/" tag="span" style="cursor: pointer;" >MetroTrans Inc. Admin</router-link></v-toolbar-title>
     </v-toolbar>
     <v-content>
       <router-view/>
@@ -42,6 +43,10 @@
 
     <v-footer :fixed="fixed" app>
       <span>MetroTrans Inc.&copy; 2018</span>
+      <v-spacer></v-spacer>
+      <div class="text-xs-center">
+        <v-rating :readonly="true" v-model="rating"></v-rating>
+      </div>
     </v-footer>
   </v-app>
 </template>
@@ -53,7 +58,13 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+      rating:3,
       items: [
+        {
+          icon:'home',
+          title:'Home',
+          link:'/'
+        },
         {
         icon: 'account_circle',
         title: 'Administrator',
