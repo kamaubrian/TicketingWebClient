@@ -97,7 +97,7 @@
                     >
                       <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
                       <template slot="items" slot-scope="props">
-                        <td>{{props.item.arrivalDestination}}</td>
+                        <td>{{props.item.departureLocation}}</td>
                        <td class="text-xs-right">{{ props.item.arrivalDestination }}</td>
                        <td class="text-xs-right">{{ props.item.timeTaken }}</td>
                        <td class="text-xs-right">{{ props.item.pricePerTrip }}</td>
