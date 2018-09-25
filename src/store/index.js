@@ -15,7 +15,8 @@ export const store = new Vuex.Store({
       }],
       user:null,
       loading:false,
-      error:null
+      error:null,
+      token:null
     },
 
   mutations:{
@@ -33,6 +34,9 @@ export const store = new Vuex.Store({
       },
       setLoadedSchedules(state,payload){
         state.loadedSchedules=payload;
+      },
+      setToken(state,payload){
+        state.token =payload;
       }
   },
   actions:{
@@ -79,7 +83,6 @@ export const store = new Vuex.Store({
             }
             commit('setLoading',false);
             commit('setLoadedSchedules',schedules);
-            //console.log(schedules);
           })
           .catch((error)=>{
               commit('setLoading',false);
@@ -100,7 +103,9 @@ export const store = new Vuex.Store({
       },
     loadedSchedules(state){
         return state.loadedSchedules;
+    },
+    getToken(state){
+        return state.token;
     }
   }
-
 });
