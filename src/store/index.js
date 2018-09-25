@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import * as firebase from 'firebase';
+import api from '../services/api';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -40,6 +41,19 @@ export const store = new Vuex.Store({
       }
   },
   actions:{
+      async onLoginAdminstrator({commit},payload){
+        let response;
+          try{
+            commit('setLoading',true);
+            commit('clearError');
+            response = await api('user').post('/auth/',payload);
+            commit('setLoading',false);
+          }catch (e) {
+            commit('setLoading',false);
+            commit('setError',e.message);
+          }
+          return response;
+      },
       onCreateSchedule({commit,getters},payload){
         commit('setLoading',true);
         commit('clearError');
@@ -83,6 +97,7 @@ export const store = new Vuex.Store({
             }
             commit('setLoading',false);
             commit('setLoadedSchedules',schedules);
+            //console.log(schedules);
           })
           .catch((error)=>{
               commit('setLoading',false);
@@ -105,7 +120,8 @@ export const store = new Vuex.Store({
         return state.loadedSchedules;
     },
     getToken(state){
-        return state.token;
+        return state.token
     }
   }
+
 });
