@@ -107,6 +107,9 @@ export const store = new Vuex.Store({
       },
       clearErrors({commit}){
         commit('clearError');
+      },
+      setToken({commit},payload){
+        commit('setToken',payload);
       }
   },
   getters:{

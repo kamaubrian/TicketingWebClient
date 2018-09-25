@@ -1,7 +1,15 @@
 <template>
   <v-content>
     <v-container fluid fill-height>
-      <v-layout align-center justify-center>
+      <v-layout align-center justify-center v-if="isLoading">
+          <v-flex xs12 class="text-xs-center">
+            <v-progress-circular indeterminate class="primary--text"
+                                 :width="7"
+                                 :size="70"
+            ></v-progress-circular>
+          </v-flex>
+      </v-layout>
+      <v-layout align-center justify-center v-else>
         <v-flex xs8 sm6>
           <v-card class="elevation-12">
             <v-toolbar dark color="primarydark">
@@ -45,12 +53,17 @@
     computed:{
       isFormValid(){
         return this.email !== '' && this.password!==''
-      }
+      },
+      isLoading(){
+        return this.$store.getters.loading
+      },
     },
     methods:{
       async onClickToLogin(){
           try{
             const response = await this.$store.dispatch('onLoginAdminstrator',{email:this.email,password:this.password});
+            this.$store.dispatch('setToken',response.data.token);
+            this.$router.push('/schedule');
             console.log(response);
           }catch (e) {
             console.log(e.message);
