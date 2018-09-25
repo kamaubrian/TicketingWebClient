@@ -10,12 +10,14 @@
             <v-card-text>
               <v-form>
                 <v-text-field append-icon="person"
+                v-model="email"
                 name="email"
                 label="Enter Email"
                 type="email"
                 outline
                 required></v-text-field>
                 <v-text-field
+                v-model="password"
                 append-icon="lock"
                 name="password"
                 label="Enter Password"
@@ -24,7 +26,7 @@
                 required>
                 </v-text-field>
                 <div class="text-xs-center mt-3">
-                  <v-btn  outline type="submit">LOGIN</v-btn>
+                  <v-btn :disabled="!isFormValid" outline type="submit">LOGIN</v-btn>
                 </div>
               </v-form>
             </v-card-text>
@@ -36,5 +38,16 @@
 </template>
 <script>
   export default {
+    data(){
+      return{
+        email:'',
+        password:''
+      }
+    },
+    computed:{
+      isFormValid(){
+        return this.email !== '' && this.password!==''
+      }
+    }
   }
 </script>
