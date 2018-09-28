@@ -14,8 +14,8 @@
       <v-list>
         <v-list-tile
           value="true"
-          v-for="(item, i) in items"
-          :key="i"
+          v-for="item in menuItems"
+          :key="item.title"
           router
           :to="item.link"
         >
@@ -68,14 +68,6 @@ export default {
       drawer: false,
       fixed: false,
       rating:3,
-      items: [
-        {
-          icon:'home',
-          title:'Home',
-          link:'/'
-        }
-
-      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
