@@ -69,6 +69,13 @@
             console.log(e.message);
           }
       }
-    }
+    },
+    mounted(){
+        if(this.isUserAuthenticated){
+          this.$router.push('/schedule')
+        }else{
+          this.$router.push('/');
+        }
+      }
   }
 </script>
