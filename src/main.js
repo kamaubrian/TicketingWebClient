@@ -8,6 +8,8 @@ import 'vuetify/dist/vuetify.min.css'
 import * as firebase from 'firebase'
 import {store} from './store'
 import {sync} from 'vuex-router-sync'
+
+
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',
   secondary: '#424242',
@@ -38,4 +40,5 @@ new Vue({
       messagingSenderId: process.env.messagingSenderId
     });
   }
+
 });

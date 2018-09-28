@@ -33,6 +33,9 @@ export const store = new Vuex.Store({
       clearError(state,payload){
         state.error = null;
       },
+      onClearToken(state){
+        state.token = null;
+      },
       setLoadedSchedules(state,payload){
         state.loadedSchedules=payload;
       },
@@ -48,6 +51,7 @@ export const store = new Vuex.Store({
             commit('clearError');
             response = await api('user').post('/auth/',payload);
             commit('setLoading',false);
+            commit('setToken',response.data.token);
           }catch (e) {
             commit('setLoading',false);
             commit('setError',e.message);
@@ -108,6 +112,9 @@ export const store = new Vuex.Store({
       clearErrors({commit}){
         commit('clearError');
       },
+      onLogout({commit}){
+        commit('onClearToken');
+      },
       setToken({commit},payload){
         commit('setToken',payload);
       }
@@ -126,5 +133,4 @@ export const store = new Vuex.Store({
         return state.token
     }
   }
-
 });

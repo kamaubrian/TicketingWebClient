@@ -26,6 +26,15 @@
             <v-list-tile-title class="primarydark--text" v-text="item.title"></v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile
+        v-if="isUserAuthenticated"
+        @click.native="onLogout"
+        >
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Logout</v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dark
@@ -64,32 +73,38 @@ export default {
           icon:'home',
           title:'Home',
           link:'/'
-        },
-        {
-        icon: 'account_circle',
-        title: 'Administrator',
-        link:'/'
-        },
-        {
-          icon:'schedule',
-          title:'Bus Schedules',
-          link:'/schedule'
-        },
-        {
-          icon:'people',
-          title:'Our Clientele',
-          link:'/customers'
-        },
-        {
-          icon:'confirmation_number',
-          title:'Tickets',
-          link:'booked'
         }
+
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'MetroTrans Inc. Adminstrator'
+    }
+  },
+  methods:{
+    onLogout(){
+      this.$store.dispatch('onLogout');
+      this.$router.push('/');
+    }
+  },
+  computed:{
+    menuItems(){
+      let menuItems = [
+        {icon:'face',title:'Login',link:'/'}
+      ];
+      if(this.isUserAuthenticated){
+        menuItems = [
+          {icon: 'account_circle', title: 'Administrator', link:'/'},
+          {icon:'schedule', title:'Bus Schedules', link:'/schedule'},
+          {icon:'people', title:'Our Clientele', link:'/customers'},
+          {icon:'confirmation_number', title:'Tickets', link:'booked'}
+        ]
+      }
+      return menuItems;
+    },
+    isUserAuthenticated(){
+      return this.$store.state.token !== null && this.$store.state.token !== undefined
     }
   },
   name: 'App'
