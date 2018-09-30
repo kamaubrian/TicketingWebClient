@@ -18,6 +18,10 @@ export const store = new Vuex.Store({
         routeTaken:'',
         pricePerTrip:'',
         departureTime:'',
+        departureLatitude:'',
+        departureLongitude:'',
+        arrivalLatitude:'',
+        arrivalLongitude:'',
       }],
       user:null,
       loading:false,
@@ -72,7 +76,11 @@ export const store = new Vuex.Store({
           timeTaken: payload.timeTaken,
           routeTaken:payload.routeTaken,
           pricePerTrip: payload.pricePerTrip,
-          departureTime: payload.departureTime
+          departureTime: payload.departureTime,
+          departureLatitude: payload.departureLatitude,
+          departureLongitude: payload.departureLongitude,
+          arrivalLatitude: payload.arrivalLatitude,
+          arrivalLongitude: payload.arrivalLongitude
         };
         firebase.database().ref("Schedule").push(schedule)
           .then((data)=>{

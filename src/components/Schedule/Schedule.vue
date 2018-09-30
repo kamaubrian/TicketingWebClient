@@ -199,10 +199,15 @@
             timeTaken: this.timeTaken,
             routeTaken: this.routeTaken,
             pricePerTrip: this.pricePerTrip,
-            departureTime: this.departureTime
+            departureTime: this.departureTime,
+            departureLatitude: this.departureLatitude,
+            departureLongitude: this.departureLongitude,
+            arrivalLatitude: this.arrivalLatitude,
+            arrivalLongitude: this.arrivalLongitude
+
           };
           this.$store.dispatch('onCreateSchedule',scheduleData);
-          this.$router.push('/');
+          this.$router.push('/schedule');
         }
     },
     computed:{
