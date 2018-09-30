@@ -21,14 +21,14 @@
                   <v-text-field
                     outline
                     label="Enter From"
-                    append-icon="place"
+                    append-icon="departure_board"
                   name="From"
                   v-model="departureLocation"></v-text-field>
                 </v-flex>
                 <v-flex xs6>
                   <v-text-field
                     outline
-                    append-icon="place"
+                    append-icon="departure_board"
                     label="Enter Destination"
                     name="To"
                   v-model="arrivalDestination"></v-text-field>
@@ -40,7 +40,7 @@
                   outline
                   label="Enter Time Taken"
                   name="timeTaken"
-                  append-icon="schedule"
+                  append-icon="timer"
                   v-model="timeTaken"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
@@ -66,8 +66,44 @@
                     outline
                     label="Enter Departure Time"
                     name="departureTime"
-                    append-icon="directions_bus"
+                    append-icon="scheduler"
                   v-model="departureTime"></v-text-field>
+                </v-flex>
+              </v-layout>
+              <v-layout row wrap>
+                <v-flex xs6>
+                  <v-text-field
+                    outline
+                    label="Enter Departure Latitude"
+                    name="depatureLatitude"
+                    append-icon="gps_fixed"
+                    v-model="departureTime"></v-text-field>
+                </v-flex>
+                <v-flex xs6>
+                  <v-text-field
+                    outline
+                    label="Enter Departure Longitude"
+                    name="depatureLongitude"
+                    append-icon="gps_fixed"
+                    v-model="departureTime"></v-text-field>
+                </v-flex>
+              </v-layout>
+              <v-layout row wrap>
+                <v-flex xs6>
+                  <v-text-field
+                    outline
+                    label="Enter Arrival Latitude"
+                    name="arrivalLatitude"
+                    append-icon="place"
+                    v-model="departureTime"></v-text-field>
+                </v-flex>
+                <v-flex xs6>
+                  <v-text-field
+                    outline
+                    label="Enter Arrival Longitude"
+                    name="arrivalLongitude"
+                    append-icon="place"
+                    v-model="departureTime"></v-text-field>
                 </v-flex>
               </v-layout>
                 <div class="text-xs-center mt-3">
@@ -124,6 +160,10 @@
         routeTaken:'',
         pricePerTrip:'',
         departureTime:'',
+        departureLatitude:'',
+        departureLongitude:'',
+        arrivalLatitude:'',
+        arrivalLongitude:'',
         search:'',
         headers:[
           {
