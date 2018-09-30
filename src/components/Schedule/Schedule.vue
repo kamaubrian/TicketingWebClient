@@ -77,7 +77,7 @@
                     label="Enter Departure Latitude"
                     name="depatureLatitude"
                     append-icon="gps_fixed"
-                    v-model="departureTime"></v-text-field>
+                    v-model="departureLatitude"></v-text-field>
                 </v-flex>
                 <v-flex xs6>
                   <v-text-field
@@ -85,7 +85,7 @@
                     label="Enter Departure Longitude"
                     name="depatureLongitude"
                     append-icon="gps_fixed"
-                    v-model="departureTime"></v-text-field>
+                    v-model="departureLongitude"></v-text-field>
                 </v-flex>
               </v-layout>
               <v-layout row wrap>
@@ -95,7 +95,7 @@
                     label="Enter Arrival Latitude"
                     name="arrivalLatitude"
                     append-icon="place"
-                    v-model="departureTime"></v-text-field>
+                    v-model="arrivalLatitude"></v-text-field>
                 </v-flex>
                 <v-flex xs6>
                   <v-text-field
@@ -103,7 +103,7 @@
                     label="Enter Arrival Longitude"
                     name="arrivalLongitude"
                     append-icon="place"
-                    v-model="departureTime"></v-text-field>
+                    v-model="arrivalLongitude"></v-text-field>
                 </v-flex>
               </v-layout>
                 <div class="text-xs-center mt-3">
@@ -208,7 +208,8 @@
     computed:{
         formIsValid(){
             return this.departureLocation !== '' && this.arrivalDestination!=='' && this.timeTaken!==''
-                && this.routeTaken!=='' && this.pricePerTrip!=='' && this.departureTime!==''
+                && this.routeTaken!=='' && this.pricePerTrip!=='' && this.departureTime!=='' && this.departureLatitude!==''
+                && this.departureLongitude !== '' && this.arrivalLatitude!=='' && this.arrivalLongitude!==''
         },
       loading(){
         return this.$store.getters.loading
