@@ -27,8 +27,8 @@ export const store = new Vuex.Store({
       loading:false,
       error:null,
       token:null,
-      locationLatitude:'',
-      locationLongitude:''
+      locationLatitude:null,
+      locationLongitude:null
     },
 
   mutations:{
@@ -52,6 +52,12 @@ export const store = new Vuex.Store({
       },
       setToken(state,payload){
         state.token =payload;
+      },
+      setLatitude(state,payload){
+        state.locationLatitude = payload;
+      },
+      setLongitude(state,payload){
+        state.locationLongitude = payload;
       }
   },
   actions:{
@@ -69,6 +75,18 @@ export const store = new Vuex.Store({
             commit('setError',e.message);
           }
           return response;
+      },
+      async onFetchGeolocation({commit},payload){
+        let response;
+        try{
+          commit('clearError');
+          response = await api('maps').post('/',payload);
+          commit('setLatitude',response.data.geoLocation.latitude);
+          commit('setLongitude',response.data.geoLocation.longitude);
+          //console.log('Latitude',response.data.geoLocation.latitude);
+        }catch (e) {
+          commit('setError',e.message);
+        }
       },
       onCreateSchedule({commit,getters},payload){
         commit('setLoading',true);
@@ -147,6 +165,13 @@ export const store = new Vuex.Store({
     },
     getToken(state){
         return state.token
+    },
+    latitude(state){
+        return state.locationLatitude;
+    },
+    longitude(state){
+        return state.locationLongitude;
     }
+
   }
 });

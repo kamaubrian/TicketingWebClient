@@ -185,6 +185,7 @@
 
 </template>
 <script>
+  import _ from 'lodash';
   export default {
     data(){
       return {
@@ -262,6 +263,15 @@
     mounted(){
       this.$store.dispatch('loadSchedule');
       this.schedules = this.$store.state.loadedSchedules;
+    },
+    watch:{
+      geocodeLocation:_.debounce(async function(value){
+        let location;
+        location = this.geocodeLocation;
+        this.$store.dispatch('onFetchGeolocation',{location:location});
+        this.geocodeLatitude = this.$store.state.locationLatitude;
+        this.geocodeLongitude = this.$store.getters.longitude;
+      },1500)
     }
 
   }
