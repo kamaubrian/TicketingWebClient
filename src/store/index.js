@@ -26,7 +26,9 @@ export const store = new Vuex.Store({
       user:null,
       loading:false,
       error:null,
-      token:null
+      token:null,
+      locationLatitude:'',
+      locationLongitude:''
     },
 
   mutations:{
@@ -53,6 +55,7 @@ export const store = new Vuex.Store({
       }
   },
   actions:{
+
       async onLoginAdminstrator({commit},payload){
         let response;
           try{
