@@ -112,6 +112,7 @@
             </v-card-text>
           </v-card>
         </v-flex>
+
         <v-flex xs12 sm6>
           <v-card>
             <v-card-title>
@@ -145,6 +146,39 @@
             </v-card-text>
           </v-card>
         </v-flex>
+        <v-flex xs12 sm6>
+          <v-card>
+            <v-card-title>
+              <h4>Generate Geocode Location</h4>
+              <v-spacer></v-spacer>
+              <v-text-field
+                name="Location"
+                label="Geocode Location"
+                v-model="geocodeLocation"
+                append-icon="search"></v-text-field>
+            </v-card-title>
+            <v-card-text>
+            <v-layout row wrap>
+              <v-flex xs6>
+                <v-text-field
+                  outline
+                  label="Location Latitude"
+                  name="locationLatitude"
+                  append-icon="place"
+                  v-model="geocodeLatitude"></v-text-field>
+              </v-flex>
+              <v-flex xs6>
+                <v-text-field
+                  outline
+                  label="Location Longitude"
+                  name="locationLongitude"
+                  append-icon="place"
+                  v-model="geocodeLongitude"></v-text-field>
+              </v-flex>
+            </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-flex>
       </v-layout>
     </v-container>
   </v-layout>
@@ -165,6 +199,9 @@
         arrivalLatitude:'',
         arrivalLongitude:'',
         search:'',
+        geocodeLocation:'',
+        geocodeLatitude:'',
+        geocodeLongitude:'',
         headers:[
           {
             text:'From',
