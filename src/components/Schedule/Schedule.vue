@@ -107,7 +107,7 @@
                 </v-flex>
               </v-layout>
                 <div class="text-xs-center mt-3">
-                  <v-btn @click="onCreateSchedule" outline :disabled="!formIsValid" type="submit">Create Schedule</v-btn>
+                  <v-btn @click="onCreateSchedule" class="primary" :disabled="!formIsValid" type="submit">Create Schedule</v-btn>
                 </div>
             </v-card-text>
           </v-card>

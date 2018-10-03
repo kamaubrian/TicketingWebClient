@@ -33,7 +33,7 @@
                 required>
                 </v-text-field>
                 <div class="text-xs-center mt-3">
-                  <v-btn :disabled="!isFormValid" outline @click="onClickToLogin" type="submit">LOGIN</v-btn>
+                  <v-btn :disabled="!isFormValid"  @click="onClickToLogin" type="submit" class="primary">LOGIN</v-btn>
                 </div>
             </v-card-text>
           </v-card>
