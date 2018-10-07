@@ -90,7 +90,7 @@ export default {
           {icon: 'account_circle', title: 'Administrator', link:'/'},
           {icon:'schedule', title:'Bus Schedules', link:'/schedule'},
           {icon:'people', title:'Our Clientele', link:'/customers'},
-          {icon:'confirmation_number', title:'Tickets', link:'booked'}
+          {icon:'attach_money', title:'Tickets Payments', link:'booked'}
         ]
       }
       return menuItems;
