@@ -139,6 +139,20 @@
                        <td class="text-xs-right">{{ props.item.timeTaken }}</td>
                        <td class="text-xs-right">{{ props.item.pricePerTrip }}</td>
                        <td class="text-xs-right">{{ props.item.departureTime }}</td>
+                        <td class="justify-center layout px-0">
+                          <v-icon
+                            small
+                            class="mr-2"
+
+                          >
+                            edit
+                          </v-icon>
+                          <v-icon
+                            small
+                          >
+                            delete
+                          </v-icon>
+                        </td>
                      </template>
                     </v-data-table>
                 </v-flex>

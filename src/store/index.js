@@ -23,6 +23,13 @@ export const store = new Vuex.Store({
         arrivalLatitude:'',
         arrivalLongitude:'',
       }],
+      payments:[{
+        emailAddress:'',
+        receiptNumber:'',
+        transactionAmount:'',
+        phoneNumber:'',
+        timeStamp:''
+      }],
       user:null,
       loading:false,
       error:null,
@@ -49,6 +56,9 @@ export const store = new Vuex.Store({
       },
       setLoadedSchedules(state,payload){
         state.loadedSchedules=payload;
+      },
+      setLoadedPayments(state,payload){
+        state.payments=payload;
       },
       setToken(state,payload){
         state.token =payload;
@@ -86,6 +96,20 @@ export const store = new Vuex.Store({
           //console.log('Latitude',response.data.geoLocation.latitude);
         }catch (e) {
           commit('setError',e.message);
+        }
+      },
+      async onGetPayments({commit}){
+        let response;
+        try{
+          commit('setLoading',true);
+          commit('clearError');
+          response = await api('payments').get('/allTransactions');
+          console.log("This is the response",response);
+          commit('setLoadedPayments',response.data.response.transactions);
+          commit('setLoading',false);
+        }catch (e) {
+          commit('setError',e.message);
+          commit('setLoading',false);
         }
       },
       onCreateSchedule({commit,getters},payload){
@@ -171,6 +195,9 @@ export const store = new Vuex.Store({
     },
     longitude(state){
         return state.locationLongitude;
+    },
+    payments(state){
+        return state.payments;
     }
 
   }

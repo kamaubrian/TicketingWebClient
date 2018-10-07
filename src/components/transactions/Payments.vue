@@ -1,6 +1,87 @@
 <template>
-
+<v-layout>
+  <v-container grid-list-md fluid>
+    <v-layout row wrap v-if="loading">
+      <v-flex xs12 class="text-xs-center">
+        <v-progress-circular indeterminate class="primary--text"
+                             :width="7"
+                             :size="70"
+        ></v-progress-circular>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap v-else>
+      <v-flex xs12>
+        <v-card>
+          <v-card-title>
+            <h4 class="primary--text">Paid Tickets</h4>
+            <v-spacer></v-spacer>
+            <v-text-field
+            name="Search"
+            label="Search Payment"
+            v-model="search"
+            append-icon="search"></v-text-field>
+          </v-card-title>
+          <v-card-text>
+            <v-layout row wrap>
+              <v-flex xs12>
+                <v-data-table
+                :headers="headers"
+                :items="payments"
+                :search="search">
+                  <template slot="items" slot-scope="props">
+                    <td>{{props.item.emailAddress}}</td>
+                    <td class="text-xs-right">{{props.item.receiptNumber}}</td>
+                    <td class="text-xs-right">{{props.item.transactionAmount}}</td>
+                    <td class="text-xs-right">{{props.item.phoneNumber}}</td>
+                    <td class="text-xs-right">{{props.item.timeStamp}}</td>
+                  </template>
+                </v-data-table>
+              </v-flex>
+            </v-layout>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</v-layout>
 </template>
 <script>
+  export default {
+    data(){
+      return {
+        search:'',
+        headers:[
+          {
+            text:'Email',
+            align:'left',
+            sortable:false,
+            value:'emailAddress'
+          },
+          {text:'Mpesa-Code',value:'receiptNumber'},
+          {text:'Amount',value:'transactionAmount'},
+          {text:'Phone',value:'phoneNumber'},
+          {text:'Time',value:'timeStamp'}
+        ],
+        payments:[
+          {
+            emailAddress:'',
+            receiptNumber:'',
+            transactionAmount:'',
+            phoneNumber:'',
+            timeStamp:''
+          }
+        ]
+      }
+    },
+    mounted(){
+      this.$store.dispatch('onGetPayments');
+      this.payments = this.$store.state.payments;
+    },
 
+    computed:{
+      loading(){
+        return this.$store.getters.loading
+      }
+    }
+  }
 </script>
