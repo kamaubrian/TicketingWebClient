@@ -13,7 +13,7 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            <h4 class="primary--text">Paid Tickets</h4>
+            <h4 class="primary--text">Paid Tickets(MPESA)</h4>
             <v-spacer></v-spacer>
             <v-text-field
             name="Search"
