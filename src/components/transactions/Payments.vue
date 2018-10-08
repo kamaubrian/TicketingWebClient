@@ -30,10 +30,12 @@
                 :search="search">
                   <template slot="items" slot-scope="props">
                     <td>{{props.item.emailAddress}}</td>
-                    <td class="text-xs-right">{{props.item.receiptNumber}}</td>
-                    <td class="text-xs-right">{{props.item.transactionAmount}}</td>
-                    <td class="text-xs-right">{{props.item.phoneNumber}}</td>
-                    <td class="text-xs-right">{{props.item.timeStamp}}</td>
+                    <td class="text-xs-center">{{props.item.receiptNumber}}</td>
+                    <td class="text-xs-center">{{props.item.transactionAmount}}</td>
+                    <td class="text-xs-center">{{props.item.phoneNumber}}</td>
+                    <td class="text-xs-center">{{props.item.fromLocation}}</td>
+                    <td class="text-xs-center">{{props.item.destinationLocation}}</td>
+                    <td class="text-xs-center">{{props.item.timeStamp}}</td>
                   </template>
                 </v-data-table>
               </v-flex>
@@ -60,6 +62,8 @@
           {text:'Mpesa-Code',value:'receiptNumber'},
           {text:'Amount',value:'transactionAmount'},
           {text:'Phone',value:'phoneNumber'},
+          {text:'From',value:'fromLocation'},
+          {text:'To',value:'destinationLocation'},
           {text:'Time',value:'timeStamp'}
         ],
         payments:[
@@ -68,6 +72,8 @@
             receiptNumber:'',
             transactionAmount:'',
             phoneNumber:'',
+            fromLocation:'',
+            destinationLocation:'',
             timeStamp:''
           }
         ]

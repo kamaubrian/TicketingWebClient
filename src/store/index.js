@@ -28,6 +28,8 @@ export const store = new Vuex.Store({
         receiptNumber:'',
         transactionAmount:'',
         phoneNumber:'',
+        fromLocation:'',
+        destinationLocation:'',
         timeStamp:''
       }],
       user:null,
