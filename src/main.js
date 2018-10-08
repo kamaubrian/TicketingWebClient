@@ -41,6 +41,10 @@ new Vue({
       storageBucket: process.env.storageBucket,
       messagingSenderId: process.env.messagingSenderId
     });
+
+    if(this.$store.state.token !==null && this.$store.state.token !==undefined){
+      this.$router.push('/schedule');
+    }
   }
 
 });
