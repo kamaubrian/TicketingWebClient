@@ -13,7 +13,7 @@ export default(module) => {
         });
       case 'payments':
         return axios.create({
-          baseURL:'https://ticketingrestapi.herokuapp.com/api/v1/callback/'
+          baseURL:'https://ticketingrestapi.herokuapp.com/api/v2/callback/'
         });
       default:
         return axios.create({
