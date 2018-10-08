@@ -83,6 +83,7 @@ export const store = new Vuex.Store({
             commit('setLoading',false);
             commit('setToken',response.data.token);
           }catch (e) {
+
             commit('setLoading',false);
             commit('setError','Incorrect Credentials');
           }
