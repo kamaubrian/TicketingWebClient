@@ -7,6 +7,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import * as firebase from 'firebase'
 import {store} from './store'
+import AlertComponent from './components/utils/Alert';
 import {sync} from 'vuex-router-sync'
 
 
@@ -21,8 +22,8 @@ Vue.use(Vuetify, { theme: {
   primarydark:'#23283a',
   colorBlue:'#5F9EA0'
 }});
-Vue.config.productionTip = false
-
+Vue.config.productionTip = false;
+Vue.component('app-alert',AlertComponent);
 
 sync(store,router);
 new Vue({

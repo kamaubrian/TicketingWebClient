@@ -1,15 +1,12 @@
 <template>
   <v-content>
-    <v-container fluid fill-height>
-      <v-layout align-center justify-center v-if="isLoading">
-          <v-flex xs12 class="text-xs-center">
-            <v-progress-circular indeterminate class="primary--text"
-                                 :width="7"
-                                 :size="70"
-            ></v-progress-circular>
+    <v-container>
+      <v-layout align-center justify-center v-if="error">
+          <v-flex xs8 sm6>
+            <app-alert @dismissed="onDismissed" :text="error"></app-alert>
           </v-flex>
       </v-layout>
-      <v-layout align-center justify-center v-else>
+      <v-layout align-center justify-center>
         <v-flex xs8 sm6>
           <v-card class="elevation-12">
             <v-toolbar dark color="primarydark">
@@ -57,6 +54,12 @@
       isLoading(){
         return this.$store.getters.loading
       },
+      error(){
+        return this.$store.state.error;
+      },
+      user(){
+        return this.$store.getters.user;
+      }
     },
     methods:{
       async onClickToLogin(){
@@ -68,14 +71,21 @@
           }catch (e) {
             console.log(e.message);
           }
+      },
+      onDismissed(){
+        this.$store.dispatch('clearErrors');
       }
     },
     mounted(){
+        this.$store.dispatch('clearErrors');
         if(this.isUserAuthenticated){
           this.$router.push('/schedule')
         }else{
           this.$router.push('/');
         }
-      }
+      },
+    watch:{
+
+    }
   }
 </script>

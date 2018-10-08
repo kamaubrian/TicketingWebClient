@@ -73,18 +73,18 @@ export const store = new Vuex.Store({
       }
   },
   actions:{
-
       async onLoginAdminstrator({commit},payload){
         let response;
           try{
             commit('setLoading',true);
             commit('clearError');
             response = await api('user').post('/auth/',payload);
+
             commit('setLoading',false);
             commit('setToken',response.data.token);
           }catch (e) {
             commit('setLoading',false);
-            commit('setError',e.message);
+            commit('setError','Incorrect Credentials');
           }
           return response;
       },
@@ -180,6 +180,9 @@ export const store = new Vuex.Store({
       }
   },
   getters:{
+      user(state){
+        return state.user;
+      },
       error(state){
         return state.error;
       },
