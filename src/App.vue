@@ -26,9 +26,11 @@
             <v-list-tile-title class="primarydark--text" v-text="item.title"></v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
         <v-list-tile
         v-if="isUserAuthenticated"
         @click.native="onLogout"
+        router
         >
           <v-list-tile-action>
             <v-icon>exit_to_app</v-icon>
