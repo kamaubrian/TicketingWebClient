@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Schedule from '@/components/Schedule/Schedule'
 import Login from '@/components/auth/Login'
 import Payments from '@/components/transactions/Payments'
+import Customers from '@/components/users/Users'
 import auth from './auth-guard'
 Vue.use(Router);
 
@@ -31,6 +32,13 @@ export default new Router({
       name:'Home',
       component:Home,
       beforeEnter:auth
+    },
+    {
+      path:'/customers',
+      name:'Customers',
+      component:Customers,
+      beforeEnter:auth
+
     }
   ],mode:'history'
 })

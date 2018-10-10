@@ -37,7 +37,8 @@ export const store = new Vuex.Store({
       error:null,
       token:null,
       locationLatitude:null,
-      locationLongitude:null
+      locationLongitude:null,
+      customers:null
     },
 
   mutations:{
@@ -70,9 +71,27 @@ export const store = new Vuex.Store({
       },
       setLongitude(state,payload){
         state.locationLongitude = payload;
-      }
+      },
+      setCustomers(state,payload){
+        state.customers = payload;
+    }
   },
   actions:{
+      async onFetchCustomerList({commit}){
+        let response;
+        try{
+          commit('clearError');
+          commit('setLoading',true);
+          response = await api('user').get('/auth/allUsers');
+          commit('setCustomers',response.data);
+          commit('setLoading',false);
+
+        }catch (error) {
+          commit('setError',error);
+          commit('setLoading',false);
+        }
+      },
+
       async onLoginAdminstrator({commit},payload){
         let response;
           try{
@@ -204,6 +223,9 @@ export const store = new Vuex.Store({
     },
     payments(state){
         return state.payments;
+    },
+    customers(state){
+        return state.customers;
     }
 
   }
