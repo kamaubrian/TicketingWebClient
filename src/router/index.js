@@ -4,7 +4,7 @@ import Home from '@/components/Home'
 import Schedule from '@/components/Schedule/Schedule'
 import Login from '@/components/auth/Login'
 import Payments from '@/components/transactions/Payments'
-
+import auth from './auth-guard'
 Vue.use(Router);
 
 export default new Router({
@@ -17,17 +17,20 @@ export default new Router({
     {
       path:'/schedule',
       name:'Schedule',
-      component:Schedule
+      component:Schedule,
+      beforeEnter:auth
     },
     {
       path:'/payments',
       name:'Payments',
-      component:Payments
+      component:Payments,
+      beforeEnter:auth
     },
     {
       path:'/home',
       name:'Home',
-      component:Home
+      component:Home,
+      beforeEnter:auth
     }
   ],mode:'history'
 })

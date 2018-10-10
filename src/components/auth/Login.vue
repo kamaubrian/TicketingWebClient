@@ -67,7 +67,7 @@
           try{
             const response = await this.$store.dispatch('onLoginAdminstrator',{email:this.email,password:this.password});
             this.$store.dispatch('setToken',response.data.token);
-            this.$router.push('/schedule');
+            this.$router.push('/home');
             console.log(response);
           }catch (e) {
             console.log(e.message);
