@@ -11,7 +11,7 @@
     </v-layout>
     <v-layout row wrap v-else>
       <v-flex xs12>
-        <v-card>
+        <v-card class="elevation-12">
           <v-card-title>
             <h4 class="primary--text">Paid Tickets(MPESA)</h4>
             <v-spacer></v-spacer>

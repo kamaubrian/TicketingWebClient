@@ -23,6 +23,11 @@ export default new Router({
       path:'/payments',
       name:'Payments',
       component:Payments
+    },
+    {
+      path:'/home',
+      name:'Home',
+      component:Home
     }
   ],mode:'history'
 })

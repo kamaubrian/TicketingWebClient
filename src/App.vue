@@ -89,7 +89,7 @@ export default {
       ];
       if(this.isUserAuthenticated){
         menuItems = [
-          {icon: 'account_circle', title: 'Administrator', link:'/'},
+          {icon: 'home', title: 'Home', link:'/home'},
           {icon:'schedule', title:'Bus Schedules', link:'/schedule'},
           {icon:'people', title:'Our Clientele', link:'/customers'},
           {icon:'attach_money', title:'Tickets Payments', link:'/payments'}
