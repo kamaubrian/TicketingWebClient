@@ -30,9 +30,28 @@
                 required>
                 </v-text-field>
                 <div class="text-xs-center mt-3">
-                  <v-btn :disabled="!isFormValid"  @click="onClickToLogin" type="submit" class="primary">
+                  <v-btn :disabled="!isFormValid || isLoading"  @click="onClickToLogin" type="submit" class="primary">
                     LOGIN</v-btn>
                 </div>
+                <v-dialog
+                hide-overlay
+                v-model="dialog"
+                persistent
+                width="300">
+                  <v-card
+                    color="primarydark"
+                    dark
+                  >
+                    <v-card-text>
+                      Authenticating User.....
+                      <v-progress-linear
+                        indeterminate
+                        color="white"
+                        class="mb-0"
+                      ></v-progress-linear>
+                    </v-card-text>
+                  </v-card>
+                </v-dialog>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -45,7 +64,8 @@
     data(){
       return{
         email:'',
-        password:''
+        password:'',
+        dialog:false
       }
     },
     computed:{
@@ -65,12 +85,15 @@
     methods:{
       async onClickToLogin(){
           try{
+            this.dialog= true;
             const response = await this.$store.dispatch('onLoginAdminstrator',{email:this.email,password:this.password});
             this.$store.dispatch('setToken',response.data.token);
+            this.dialog=false;
             this.$router.push('/home');
             console.log(response);
           }catch (e) {
             console.log(e.message);
+            this.dialog=false;
           }
       },
       onDismissed(){
