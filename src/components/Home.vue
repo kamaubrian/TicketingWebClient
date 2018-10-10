@@ -21,7 +21,7 @@
         </v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat color="primary" >Explore Users</v-btn>
+          <v-btn flat to="/customers" color="primary" >Explore Users</v-btn>
         </v-card-actions>
       </v-card>
       </v-hover>

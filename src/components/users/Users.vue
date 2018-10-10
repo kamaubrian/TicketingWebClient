@@ -6,6 +6,7 @@
 <script>
   export default{
     mounted(){
+      this.$store.dispatch('onFetchCustomerList');
       console.log(this.$store.state.customers);
     }
   }
