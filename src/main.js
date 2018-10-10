@@ -9,7 +9,7 @@ import * as firebase from 'firebase'
 import {store} from './store'
 import AlertComponent from './components/utils/Alert';
 import {sync} from 'vuex-router-sync'
-
+import VueApexCharts from 'vue-apexcharts'
 
 Vue.use(Vuetify, { theme: {
   primary: '#5F9EA0',
@@ -22,6 +22,7 @@ Vue.use(Vuetify, { theme: {
   primarydark:'#23283a',
   colorBlue:'#5F9EA0'
 }});
+Vue.use(VueApexCharts);
 Vue.config.productionTip = false;
 Vue.component('app-alert',AlertComponent);
 
