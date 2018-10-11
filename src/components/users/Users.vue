@@ -65,6 +65,7 @@
           {
             uid:'',
             emailAddress:'',
+            phoneNumber:'',
             creationTime:'',
             lastSignInTime:''
           }
