@@ -38,7 +38,12 @@ export const store = new Vuex.Store({
       token:null,
       locationLatitude:null,
       locationLongitude:null,
-      customers:null
+      customers:[{
+        uid:'',
+        emailAddress:'',
+        createdAt:'',
+        lastSignIn:''
+      }]
     },
 
   mutations:{
@@ -83,7 +88,7 @@ export const store = new Vuex.Store({
           commit('clearError');
           commit('setLoading',true);
           response = await api('user').get('/auth/allUsers');
-          commit('setCustomers',response.data);
+          commit('setCustomers',response.data.users);
           commit('setLoading',false);
 
         }catch (error) {
