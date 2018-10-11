@@ -41,8 +41,8 @@ export const store = new Vuex.Store({
       customers:[{
         uid:'',
         emailAddress:'',
-        createdAt:'',
-        lastSignIn:''
+        creationTime:'',
+        lastSignInTime:''
       }]
     },
 

@@ -32,9 +32,9 @@
             :search="search">
               <template slot="items" slot-scope="props">
                 <td>{{props.item.uid}}</td>
-                <td class="text-xs-center">{{props.item.email}}</td>
-                <td class="text-xs-center">{{props.item.metadata.creationTime}}</td>
-                <td class="text-xs-center">{{props.item.metadata.lastSignInTime}}</td>
+                <td class="text-xs-center">{{props.item.email!==undefined ? props.item.email : props.item.phoneNumber}}</td>
+                <td class="text-xs-center">{{props.item.metadata.creationTime!==undefined ? props.item.metadata.creationTime: null}}</td>
+                <td class="text-xs-center">{{props.item.metadata.lastSignInTime ? props.item.metadata.lastSignInTime :null}}</td>
               </template>
             </v-data-table>
           </v-flex>
