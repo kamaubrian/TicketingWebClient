@@ -51,7 +51,6 @@
     <v-content>
       <router-view/>
     </v-content>
-
     <v-footer :fixed="fixed" app>
       <span>MetroTrans Inc.&copy; 2018</span>
       <v-spacer></v-spacer>
