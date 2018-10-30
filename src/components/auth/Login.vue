@@ -1,24 +1,20 @@
 <template>
   <v-content>
-    <v-container>
-      <v-layout align-center justify-center v-if="error">
-          <v-flex xs8 sm6>
-            <app-alert @dismissed="onDismissed" :text="error"></app-alert>
-          </v-flex>
-      </v-layout>
+    <v-container fluid fill-height>
       <v-layout align-center justify-center>
-        <v-flex xs8 sm6>
-          <v-card class="elevation-12">
-            <v-toolbar dark color="primarydark">
-              <v-toolbar-title>Admin Login</v-toolbar-title>
-            </v-toolbar>
+        <v-flex xs12 sm8 md4 lg4>
+          <app-alert @dismissed="onDismissed" :text="error" v-if="error"></app-alert>
+          <v-card class="elevation-10 pa-3">
             <v-card-text>
+              <div class="layout column align-center">
+                <img v-bind:src="fetchLogo" height="150" alt="MetroTrans Inc.">
+              </div>
+              <v-form>
                 <v-text-field append-icon="person"
                 v-model="email"
                 name="email"
                 label="Enter Email"
                 type="email"
-                outline
                 required></v-text-field>
                 <v-text-field
                 v-model="password"
@@ -26,13 +22,17 @@
                 name="password"
                 label="Enter Password"
                 type="password"
-                outline
                 required>
                 </v-text-field>
+              </v-form>
+            </v-card-text>
+
+
                 <div class="text-xs-center mt-3">
                   <v-btn :disabled="!isFormValid || isLoading"  @click="onClickToLogin" type="submit" class="primary">
                     LOGIN</v-btn>
                 </div>
+
                 <v-dialog
                 hide-overlay
                 v-model="dialog"
@@ -52,7 +52,10 @@
                     </v-card-text>
                   </v-card>
                 </v-dialog>
-            </v-card-text>
+            <div class="layout column align-center">
+              <span class="caption mt-5">All Rights Reserved 2018 &copy; </span>
+              <img v-bind:src="fetchLogo" height="50" alt="MetroTrans Inc." class="mt-3">
+            </div>
           </v-card>
         </v-flex>
       </v-layout>
@@ -80,6 +83,9 @@
       },
       user(){
         return this.$store.getters.user;
+      },
+      fetchLogo(){
+        return '/static/logo/metrotrans_logo.png'
       }
     },
     methods:{

@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <div v-if="isUserAuthenticated">
     <v-navigation-drawer
       :mini-variant.sync="miniVariant"
       v-model="drawer"
@@ -57,6 +58,15 @@
         <v-rating :readonly="true" v-model="rating"></v-rating>
       </div>
     </v-footer>
+    </div>
+
+    <div v-else-if="!isUserAuthenticated">
+      <v-content>
+        <div class="page-wrapper">
+          <router-view></router-view>
+        </div>
+      </v-content>
+    </div>
   </v-app>
 </template>
 
