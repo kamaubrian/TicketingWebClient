@@ -52,6 +52,7 @@
 
       <v-toolbar-title> <router-link to="/home" tag="span" style="cursor: pointer;" >MetroTrans Inc. Admin</router-link></v-toolbar-title>
       <v-spacer></v-spacer>
+      <settings-view></settings-view>
       <v-menu offset-y origin="center center" :nudge-bottom="10"transition="scale-transition">
         <v-btn icon large flat slot="activator">
           <v-avatar size="30px">
@@ -81,7 +82,6 @@
       </div>
     </v-footer>
     </div>
-
     <div v-else-if="!isUserAuthenticated">
       <v-content>
         <div class="page-wrapper">
@@ -96,6 +96,7 @@
 export default {
   data () {
     return {
+      settingsTab:false,
       clipped: false,
       drawer: true,
       fixed: false,
@@ -121,7 +122,7 @@ export default {
           href: '#',
           title: 'Settings',
           click: (e) => {
-            console.log(e);
+            this.onCloseSettingsTab();
           }
         },
         {
@@ -139,6 +140,9 @@ export default {
     onLogout(){
       this.$store.dispatch('onLogout');
       this.$router.push('/');
+    },
+    onCloseSettingsTab(){
+      this.settingsTab = !this.settingsTab
     }
   },
   computed:{

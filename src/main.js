@@ -10,6 +10,7 @@ import {store} from './store'
 import AlertComponent from './components/utils/Alert';
 import {sync} from 'vuex-router-sync'
 import VueApexCharts from 'vue-apexcharts'
+import SettingsComponent from './components/settings/Settings'
 
 Vue.use(Vuetify, { theme: {
   primary: '#5F9EA0',
@@ -25,6 +26,7 @@ Vue.use(Vuetify, { theme: {
 Vue.use(VueApexCharts);
 Vue.config.productionTip = false;
 Vue.component('app-alert',AlertComponent);
+Vue.component('settings-view',SettingsComponent);
 
 sync(store,router);
 new Vue({
