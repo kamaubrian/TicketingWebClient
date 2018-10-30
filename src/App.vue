@@ -51,7 +51,25 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
 
       <v-toolbar-title> <router-link to="/home" tag="span" style="cursor: pointer;" >MetroTrans Inc. Admin</router-link></v-toolbar-title>
-    </v-toolbar>
+      <v-spacer></v-spacer>
+      <v-menu offset-y origin="center center" :nudge-bottom="10"transition="scale-transition">
+        <v-btn icon large flat slot="activator">
+          <v-avatar size="30px">
+            <img src="/static/profile/man_profile.png" alt="admin"/>
+          </v-avatar>
+        </v-btn>
+        <v-list class="pa-0">
+          <v-list-tile v-for="(item,index) in profileItems" :to="!item.href ? { name: item.name } : null" :href="item.href" @click="item.click" ripple="ripple" :disabled="item.disabled" :target="item.target" rel="noopener" :key="index">
+            <v-list-tile-action v-if="item.icon">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+     </v-toolbar>
     <v-content>
       <router-view/>
     </v-content>
@@ -88,7 +106,33 @@ export default {
       title: 'MetroTrans Inc. Adminstrator',
       scrollSettings:{
         maxScrollbarLength: 160
-      }
+      },
+      profileItems:[
+        {
+          icon: 'account_circle',
+          href: '#',
+          title: 'Profile',
+          click: (e) => {
+            console.log(e);
+          }
+        },
+        {
+          icon: 'settings',
+          href: '#',
+          title: 'Settings',
+          click: (e) => {
+            console.log(e);
+          }
+        },
+        {
+          icon: 'exit_to_app',
+          href: '/',
+          title: 'Logout',
+          click: (e) => {
+            this.onLogout();
+          }
+        }
+      ]
     }
   },
   methods:{
