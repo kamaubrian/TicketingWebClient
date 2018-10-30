@@ -20,7 +20,7 @@
             name="search"
             label="Search User"
             v-model="search"
-            outline
+
             append-icon="search"></v-text-field>
         </v-card-title>
       <v-card-text>

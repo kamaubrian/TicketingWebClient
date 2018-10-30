@@ -26,13 +26,10 @@
                 </v-text-field>
               </v-form>
             </v-card-text>
-
-
                 <div class="text-xs-center mt-3">
                   <v-btn :disabled="!isFormValid || isLoading"  @click="onClickToLogin" type="submit" class="primary">
                     LOGIN</v-btn>
                 </div>
-
                 <v-dialog
                 hide-overlay
                 v-model="dialog"

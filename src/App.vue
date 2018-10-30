@@ -10,6 +10,9 @@
       width="260"
       id="appDrawer"
     >
+      <v-toolbar color="primarydark darken-1" >
+        <img v-bind:src="fetchLogo" height="60" alt="MetroTrans Inc.">
+      </v-toolbar>
       <v-divider></v-divider>
       <v-list>
         <v-list-tile
@@ -38,6 +41,7 @@
           <v-list-tile-content>Logout</v-list-tile-content>
         </v-list-tile>
       </v-list>
+
     </v-navigation-drawer>
     <v-toolbar dark
       app
@@ -81,7 +85,10 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'MetroTrans Inc. Adminstrator'
+      title: 'MetroTrans Inc. Adminstrator',
+      scrollSettings:{
+        maxScrollbarLength: 160
+      }
     }
   },
   methods:{
@@ -104,6 +111,9 @@ export default {
         ]
       }
       return menuItems;
+    },
+    fetchLogo(){
+      return '/static/logo/metro_white.png'
     },
     isUserAuthenticated(){
       return this.$store.state.token !== null && this.$store.state.token !== undefined
