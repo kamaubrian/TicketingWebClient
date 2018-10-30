@@ -73,14 +73,20 @@
      </v-toolbar>
     <v-content>
       <router-view/>
+      <v-footer :fixed="fixed" app>
+        <span>MetroTrans Inc.&copy; 2018</span>
+        <v-spacer></v-spacer>
+        <div class="text-xs-center">
+          <v-rating :readonly="true" v-model="rating"></v-rating>
+        </div>
+      </v-footer>
     </v-content>
-    <v-footer :fixed="fixed" app>
-      <span>MetroTrans Inc.&copy; 2018</span>
-      <v-spacer></v-spacer>
-      <div class="text-xs-center">
-        <v-rating :readonly="true" v-model="rating"></v-rating>
-      </div>
-    </v-footer>
+
+      <v-fab-transition>
+        <v-btn fab="fab" small dark="dark" fixed="fixed" bottom="bottom" right="right" color="red" v-scroll="onScroll" v-show="fab" @click="toTop">
+          <v-icon>keyboard_arrow_up</v-icon>
+        </v-btn>
+      </v-fab-transition>
     </div>
     <div v-else-if="!isUserAuthenticated">
       <v-content>
@@ -97,6 +103,7 @@ export default {
   data () {
     return {
       settingsTab:false,
+      fab:false,
       clipped: false,
       drawer: true,
       fixed: false,
@@ -137,6 +144,22 @@ export default {
     }
   },
   methods:{
+    handleDrawerToggler(){
+      this.drawer = !this.drawer
+    },
+    onScroll () {
+      if (typeof window === 'undefined') return;
+
+      const top = window.pageYOffset ||
+        document.documentElement.offsetTop ||
+        0;
+
+      this.fab = top > 300;
+    },
+    toTop () {
+      this.$router.push({ hash: '' });
+      this.$vuetify.goTo(0);
+    },
     onLogout(){
       this.$store.dispatch('onLogout');
       this.$router.push('/');

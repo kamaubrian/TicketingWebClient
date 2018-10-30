@@ -1,5 +1,4 @@
 <template>
-
   <v-layout row justify-end>
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-btn slot="activator" class="primarydark" flat dark fab>
