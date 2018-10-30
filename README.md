@@ -1,5 +1,13 @@
 # ticketing
 
+> Use the url provided to get to the app.
+
+>>Login With 
+>>>> Email: testing@tests.com
+
+
+>>>> Password: test123
+
 > a vue js application for administrators of Metrotrans
 
 ## Build Setup
