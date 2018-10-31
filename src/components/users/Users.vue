@@ -35,6 +35,21 @@
                 <td class="text-xs-center">{{props.item.email!==undefined ? props.item.email : props.item.phoneNumber}}</td>
                 <td class="text-xs-center">{{props.item.metadata.creationTime!==undefined ? props.item.metadata.creationTime: null}}</td>
                 <td class="text-xs-center">{{props.item.metadata.lastSignInTime ? props.item.metadata.lastSignInTime :null}}</td>
+                <td class="justify-center layout px-0">
+                  <v-icon
+                    style="cursor: pointer;"
+                    small
+                    class="mr-2"
+
+                  >
+                    edit
+                  </v-icon>
+                  <v-icon
+                    small
+                  >
+                    delete
+                  </v-icon>
+                </td>
               </template>
             </v-data-table>
           </v-flex>
@@ -59,7 +74,8 @@
           },
           {text:'Email',value:'email'},
           {text:'Created On',value:'creationTime'},
-          {text:'Last Signed In',value:'lastSignInTime'}
+          {text:'Last Signed In',value:'lastSignInTime'},
+          {text:'Action',value:'Action'}
         ],
         customers:[
           {
