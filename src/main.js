@@ -11,6 +11,7 @@ import AlertComponent from './components/utils/Alert';
 import {sync} from 'vuex-router-sync'
 import VueApexCharts from 'vue-apexcharts'
 import SettingsComponent from './components/settings/Settings'
+import AddUser from './components/users/AddUser'
 
 Vue.use(Vuetify, { theme: {
   primary: '#5F9EA0',
@@ -27,6 +28,7 @@ Vue.use(VueApexCharts);
 Vue.config.productionTip = false;
 Vue.component('app-alert',AlertComponent);
 Vue.component('settings-view',SettingsComponent);
+Vue.component('add-user',AddUser);
 
 sync(store,router);
 new Vue({

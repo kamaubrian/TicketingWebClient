@@ -15,6 +15,7 @@
     <v-flex xs12>
       <v-card>
         <v-card-title>
+          <add-user></add-user>
           <v-spacer></v-spacer>
           <v-text-field
             name="search"
