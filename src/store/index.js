@@ -140,6 +140,32 @@ export const store = new Vuex.Store({
           commit('setLoading',false);
         }
       },
+      async onFetchPaymentsFromFirebase({commit}){
+        let response;
+        try{
+          commit('setLoading',true);
+          commit('clearError');
+          let responseArray = [];
+          response = await firebase.database().ref('TicketPayments').once('value');
+          const responseObjects = response.val();
+          for(let key in responseObjects){
+            responseArray.push({
+              emailAddress:responseObjects[key].emailAddress,
+              receiptNumber:responseObjects[key].receiptNumber,
+              transactionAmount:responseObjects[key].transactionAmount,
+              phoneNumber:responseObjects[key].phoneNumber,
+              fromLocation:responseObjects[key].fromLocation,
+              destinationLocation:responseObjects[key].destinationLocation,
+              timeStamp:responseObjects[key].timeStamp
+            });
+          }
+          commit('setLoading',false);
+          commit('setLoadedPayments',responseArray);
+        }catch (e) {
+          commit('setError',e);
+          commit('setLoading',false);
+        }
+      },
       onCreateSchedule({commit,getters},payload){
         commit('setLoading',true);
         commit('clearError');

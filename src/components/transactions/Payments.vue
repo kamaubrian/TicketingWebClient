@@ -48,6 +48,7 @@
 </v-layout>
 </template>
 <script>
+  import _ from 'lodash';
   export default {
     data(){
       return {
@@ -80,7 +81,7 @@
       }
     },
     mounted(){
-      this.$store.dispatch('onGetPayments');
+      this.$store.dispatch('onFetchPaymentsFromFirebase');
       this.payments = this.$store.state.payments;
     },
 
@@ -88,6 +89,12 @@
       loading(){
         return this.$store.getters.loading
       }
+    },
+    watch:{
+      search:_.debounce(async function(value){
+        this.$store.dispatch('onFetchPaymentsFromFirebase');
+        this.payments = this.$store.state.payments;
+      },1500)
     }
   }
 </script>
