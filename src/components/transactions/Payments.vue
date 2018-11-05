@@ -19,6 +19,7 @@
             name="Search"
             label="Search Payment"
             v-model="search"
+            @input="onTextDataChange"
             append-icon="search"></v-text-field>
           </v-card-title>
           <v-card-text>
@@ -53,6 +54,7 @@
     data(){
       return {
         search:'',
+        isEditing:false,
         headers:[
           {
             text:'Email',
@@ -92,9 +94,15 @@
     },
     watch:{
       search:_.debounce(async function(value){
-        this.$store.dispatch('onFetchPaymentsFromFirebase');
+        this.$store.dispatch('onTextDataChanged');
         this.payments = this.$store.state.payments;
       },1500)
+    },
+    methods:{
+      onTextDataChange(){
+        this.$store.dispatch('onTextDataChanged');
+        this.payments = this.$store.state.payments;
+      }
     }
   }
 </script>

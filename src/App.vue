@@ -176,6 +176,7 @@ export default {
       if(this.isUserAuthenticated){
         menuItems = [
           {icon: 'home', title: 'Home', link:'/home'},
+          {icon:'person',title:'Administrator Profile',link:'/admin-profile'},
           {icon:'schedule', title:'Bus Schedules', link:'/schedule'},
           {icon:'people', title:'Our Clientele', link:'/customers'},
           {icon:'attach_money', title:'Tickets Payments', link:'/payments'}

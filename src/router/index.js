@@ -5,6 +5,7 @@ import Schedule from '@/components/Schedule/Schedule'
 import Login from '@/components/auth/Login'
 import Payments from '@/components/transactions/Payments'
 import Customers from '@/components/users/Users'
+import Profile from '@/components/users/Profile'
 import auth from './auth-guard'
 Vue.use(Router);
 
@@ -38,7 +39,12 @@ export default new Router({
       name:'Customers',
       component:Customers,
       beforeEnter:auth
-
+    },
+    {
+      path:'/admin-profile',
+      name:'Profile',
+      component:Profile,
+      beforeEnter:auth
     }
   ],mode:'history'
 })

@@ -1,0 +1,92 @@
+<template>
+<v-container fill-height fluid class="pa-0 ma-0 white">
+  <v-layout column class="pa-0 ma-0">
+    <v-card clas="elevation-0">
+      <v-card-media height="300" src="/static/profile/profile_background.jpg">
+        <v-layout column align-center justify-center>
+          <v-avatar size="150" class="mx-5 mt-3">
+            <img src="/static/profile/man_profile.png"/>
+          </v-avatar>
+          <h1 class="white--text">Brian Kamau</h1>
+        </v-layout>
+      <v-layout justify-start>
+        <v-speed-dial class="justify-end"
+                      v-model="fab"
+                      :top="top"
+                      :bottom="bottom"
+                      :right="right"
+                      :left="left"
+                      :direction="direction"
+                      :open-on-hover="hover"
+                      :transition="transition">
+          <v-btn
+            slot="activator"
+            v-model="fab"
+            color="blue darken-2"
+            dark
+            fab
+          >
+            <v-icon>account_circle</v-icon>
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            dark
+            small
+            color="green"
+          >
+            <v-icon>edit</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            dark
+            small
+            color="indigo"
+          >
+            <v-icon>add</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            dark
+            small
+            color="red"
+          >
+            <v-icon>delete</v-icon>
+          </v-btn>
+        </v-speed-dial>
+      </v-layout>
+      </v-card-media>
+      <v-card-text class="pa-0">
+       <v-tabs v-model="selectedTab">
+         <v-tab ripple href="#tab-1">
+           Profile
+         </v-tab>
+         <v-tab ripple href="#tab-2">
+           Activity
+         </v-tab>
+       </v-tabs>
+      </v-card-text>
+    </v-card>
+  </v-layout>
+</v-container>
+</template>
+<script>
+  export default{
+    data(){
+      return{
+        direction: 'top',
+        fling: false,
+        top: false,
+        right: true,
+        bottom: true,
+        left: true,
+        transition: 'slide-y-reverse-transition',
+        fab:false,
+        tabs:null,
+        hover:false,
+        selectedTab: null,
+
+      }
+    }
+  }
+</script>
