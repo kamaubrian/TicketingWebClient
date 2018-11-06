@@ -6,7 +6,10 @@ export default(module) => {
         return axios.create({
           baseURL:'https://ticketingrestapi.herokuapp.com/api/v1/user'
         });
-
+      case 'user_v2':
+        return axios.create({
+          baseURL:'https://ticketingrestapi.herokuapp.com/api/v2/user'
+        });
       case 'maps':
         return axios.create({
           baseURL:'https://ticketingrestapi.herokuapp.com/api/v1/maps'

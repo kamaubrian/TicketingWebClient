@@ -44,7 +44,8 @@ export const store = new Vuex.Store({
         phoneNumber:'',
         creationTime:'',
         lastSignInTime:''
-      }]
+      }],
+      profileImageUrl:''
     },
 
   mutations:{
@@ -80,7 +81,10 @@ export const store = new Vuex.Store({
       },
       setCustomers(state,payload){
         state.customers = payload;
-    }
+    },
+      setProfileImageUrl(state,payload){
+        state.profileImageUrl = payload;
+      }
   },
   actions:{
       async onFetchCustomerList({commit}){
@@ -103,8 +107,8 @@ export const store = new Vuex.Store({
           try{
             commit('setLoading',true);
             commit('clearError');
-            response = await api('user').post('/auth/',payload);
-
+            response = await api('user_v2').post('/auth/',payload);
+            commit('setProfileImageUrl',response.data.profileImageUrl);
             commit('setLoading',false);
             commit('setToken',response.data.token);
           }catch (e) {
@@ -284,6 +288,9 @@ export const store = new Vuex.Store({
     },
     customers(state){
         return state.customers;
+    },
+    profileImageUrl(state){
+        return state.profileImageUrl;
     }
 
   }

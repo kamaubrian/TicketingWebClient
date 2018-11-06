@@ -56,7 +56,7 @@
       <v-menu offset-y origin="center center" :nudge-bottom="10"transition="scale-transition">
         <v-btn icon large flat slot="activator">
           <v-avatar size="30px">
-            <img src="/static/profile/man_profile.png" alt="admin"/>
+            <img v-bind:src="fetchImageUrl" alt="admin"/>
           </v-avatar>
         </v-btn>
         <v-list class="pa-0">
@@ -186,6 +186,9 @@ export default {
     },
     fetchLogo(){
       return '/static/logo/metro_white.png'
+    },
+    fetchImageUrl(){
+      return this.$store.state.profileImageUrl;
     },
     isUserAuthenticated(){
       return this.$store.state.token !== null && this.$store.state.token !== undefined

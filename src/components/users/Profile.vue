@@ -5,7 +5,7 @@
       <v-card-media height="300" src="/static/profile/profile_background.jpg">
         <v-layout column align-center justify-center>
           <v-avatar size="150" class="mx-5 mt-3">
-            <img src="/static/profile/man_profile.png"/>
+            <img v-bind:src="fetchProfileImage" alt="admin"/>
           </v-avatar>
           <h1 class="white--text">Brian Kamau</h1>
         </v-layout>
@@ -86,6 +86,11 @@
         hover:false,
         selectedTab: null,
 
+      }
+    },
+    computed:{
+      fetchProfileImage(){
+        return this.$store.state.profileImageUrl;
       }
     }
   }
