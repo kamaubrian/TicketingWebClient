@@ -29,21 +29,14 @@
             <v-icon>account_circle</v-icon>
             <v-icon>close</v-icon>
           </v-btn>
-          <v-btn
-            fab
-            dark
-            small
-            color="green"
-          >
-            <v-icon>edit</v-icon>
-          </v-btn>
+         <add-admin></add-admin>
           <v-btn
             fab
             dark
             small
             color="indigo"
           >
-            <v-icon>add</v-icon>
+            <v-icon>edit</v-icon>
           </v-btn>
           <v-btn
             fab

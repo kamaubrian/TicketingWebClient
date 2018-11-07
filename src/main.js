@@ -12,6 +12,7 @@ import {sync} from 'vuex-router-sync'
 import VueApexCharts from 'vue-apexcharts'
 import SettingsComponent from './components/settings/Settings'
 import AddUser from './components/users/AddUser'
+import AddAdminstrator from './components/users/admin/AddAdminstrator'
 
 Vue.use(Vuetify, { theme: {
   primary: '#5F9EA0',
@@ -29,6 +30,7 @@ Vue.config.productionTip = false;
 Vue.component('app-alert',AlertComponent);
 Vue.component('settings-view',SettingsComponent);
 Vue.component('add-user',AddUser);
+Vue.component('add-admin',AddAdminstrator);
 
 sync(store,router);
 new Vue({
