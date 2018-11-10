@@ -15,7 +15,18 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-list three-line subheader>
-        <v-subheader>Add Administrator</v-subheader>
+        <v-subheader>Add Administrator
+        <v-spacer></v-spacer>
+          <v-avatar size="40px">
+            <img src="/static/profile/man_profile.png" alt="admin"/>
+          </v-avatar>
+          <v-btn class="primarydark" flat dark small>
+            <v-icon left dark>cloud_upload</v-icon>
+            Upload Profile Image
+          </v-btn>
+
+        </v-subheader>
+
         <v-list-tile avatar>
           <v-list-tile-content>
             <v-list-tile-sub-title>
