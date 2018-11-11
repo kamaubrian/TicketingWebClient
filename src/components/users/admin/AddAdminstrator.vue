@@ -43,15 +43,18 @@
             </v-layout>
           </v-container>
         </v-card-text>
+
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false" >Close</v-btn>
+          <v-btn color="blue darken-1" flat @click="dialog = false" >Close</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="snackbar = true" >Snack</v-btn>
+
           <v-btn color="blue darken-1" flat @click.native="onCreateAdmin":disabled="!validateForm">Save</v-btn>
         </v-card-actions>
         <v-progress-linear :indeterminate="true" v-if="loading"></v-progress-linear>
-
       </v-card>
     </v-dialog>
+
   </v-layout>
 </template>
 <script>
@@ -64,7 +67,13 @@
       phoneNumber:'',
       authenticationPassword:'',
       profileImageUrl:'',
-      image:null
+      image:null,
+      snackbar: false,
+      y: 'bottom',
+      x: null,
+      mode: '',
+      timeout: 6000,
+      text: 'Hello, I\'m a snackbar'
     }),
     computed:{
       loading(){
@@ -106,6 +115,9 @@
             image: this.image,
           };
           const response = await this.$store.dispatch('onCreateAdminstrator', adminData);
+          this.snackbar=true;
+          this.dialog = false;
+
         }catch (e) {
           console.log(e.message);
         }

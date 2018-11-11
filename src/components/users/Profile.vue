@@ -43,6 +43,7 @@
             dark
             small
             color="red"
+            @click.native="snackbar=true"
           >
             <v-icon>delete</v-icon>
           </v-btn>
@@ -106,6 +107,25 @@
          </v-tabs-items>
        </v-tabs>
       </v-card-text>
+      <v-snackbar
+        v-model="snackbar"
+        :bottom="y === 'bottom'"
+        :left="x === 'left'"
+        :multi-line="mode === 'multi-line'"
+        :right="x === 'right'"
+        :timeout="timeout"
+        :top="y === 'top'"
+        :vertical="mode === 'vertical'"
+      >
+        {{ text }}
+        <v-btn
+          color="pink"
+          flat
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
     </v-card>
   </v-layout>
 </v-container>
@@ -125,7 +145,13 @@
         tabs:null,
         hover:false,
         selectedTab: null,
-        adminstrator:null
+        adminstrator:null,
+        snackbar: false,
+        y: 'bottom',
+        x: null,
+        mode: '',
+        timeout: 6000,
+        text: 'Hello, I\'m a snackbar'
 
       }
     },

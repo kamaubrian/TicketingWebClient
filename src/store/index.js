@@ -130,7 +130,7 @@ export const store = new Vuex.Store({
           };
           console.log(downloadableUrl);
           const response = await api('admin').post('/',adminstrator);
-          commit('setAdminstrator',response.data.admin);
+          //commit('setAdminstrator',response.data.admin);
           console.log(response);
           commit('setLoading',false);
           //commit('setProfileImageUrl',downloadableUrl);
