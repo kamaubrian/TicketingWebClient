@@ -95,16 +95,20 @@
         fileReader.readAsDataURL(files[0]);
         this.image = files[0];
       },
-      onCreateAdmin(){
-        const adminData = {
-          firstName:this.firstName,
-          lastName:this.lastName,
-          emailAddress:this.emailAddress,
-          phoneNumber:this.phoneNumber,
-          authenticationPassword:this.authenticationPassword,
-          image:this.image,
-        };
-        this.$store.dispatch('onCreateAdminstrator',adminData);
+      async onCreateAdmin(){
+        try {
+          const adminData = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            emailAddress: this.emailAddress,
+            phoneNumber: this.phoneNumber,
+            authenticationPassword: this.authenticationPassword,
+            image: this.image,
+          };
+          const response = await this.$store.dispatch('onCreateAdminstrator', adminData);
+        }catch (e) {
+          console.log(e.message);
+        }
       }
     },
   }

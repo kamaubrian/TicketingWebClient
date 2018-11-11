@@ -7,7 +7,7 @@
           <v-avatar size="150" class="mx-5 mt-3">
             <img v-bind:src="fetchProfileImage" alt="admin"/>
           </v-avatar>
-          <h1 class="white--text">Brian Kamau</h1>
+          <h1 class="white--text">{{this.$store.state.adminstrator.firstName }} {{this.$store.state.adminstrator.lastName}}</h1>
         </v-layout>
       <v-layout justify-start>
         <v-speed-dial class="justify-end"
@@ -79,7 +79,7 @@
                        <v-icon color="indigo">phone</v-icon>
                      </v-list-tile-action>
                      <v-list-tile-content>
-                       <v-list-tile-title>+254703399398</v-list-tile-title>
+                       <v-list-tile-title>{{this.$store.state.adminstrator.phoneNumber}}</v-list-tile-title>
                        <v-list-tile-sub-title>Mobile</v-list-tile-sub-title>
                      </v-list-tile-content>
                      <v-list-tile-action>
@@ -92,7 +92,7 @@
                        <v-icon color="indigo">mail</v-icon>
                      </v-list-tile-action>
                      <v-list-tile-content>
-                       <v-list-tile-title>kamaubrian05@gmail.com</v-list-tile-title>
+                       <v-list-tile-title>{{this.$store.state.adminstrator.emailAddress}}</v-list-tile-title>
                        <v-list-tile-sub-title>Email</v-list-tile-sub-title>
                      </v-list-tile-content>
                      <v-list-tile-action>
@@ -125,6 +125,7 @@
         tabs:null,
         hover:false,
         selectedTab: null,
+        adminstrator:null
 
       }
     },
