@@ -9,11 +9,17 @@
           <span class="headline">New Administrator</span>
           <v-spacer></v-spacer>
           <v-avatar size="40px">
-            <img src="/static/profile/man_profile.png" alt="admin"/>
+            <img src="/static/profile/man_profile.png" :src="profileImageUrl===''?fetchDefaultImage :profileImageUrl " alt="admin"/>
           </v-avatar>
-          <v-btn class="primarydark" flat dark small>
+          <v-btn class="primarydark" flat dark small @click.native="onPickFile">
             <v-icon left dark>cloud_upload</v-icon>
             Upload Profile Image
+            <input type="file"
+                   style="display: none;"
+                   ref="fileInput"
+                   accept="image/*"
+                   @change="onFilePicked"
+            />
           </v-btn>
         </v-card-title>
         <v-card-text>
@@ -39,8 +45,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false" >Close</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false":disabled="!validateForm">Save</v-btn>
         </v-card-actions>
         <v-progress-linear :indeterminate="true" v-if="loading"></v-progress-linear>
 
@@ -56,12 +62,39 @@
       lastName:'',
       emailAddress:'',
       phoneNumber:'',
-      authenticationPassword:''
+      authenticationPassword:'',
+      profileImageUrl:'',
+      image:null
     }),
     computed:{
       loading(){
         return this.$store.state.loading;
+      },
+      fetchDefaultImage(){
+        return '/static/profile/man_profile.png'
+      },
+      validateForm(){
+        return this.firstName!=='' && this.lastName!=='' && this.emailAddress !== '' && this.phoneNumber !==''
+            && this.authenticationPassword !== '' && this.profileImageUrl !==''
       }
-    }
+    },
+    methods:{
+      onPickFile(){
+        this.$refs.fileInput.click();
+      },
+      onFilePicked(event){
+        const files = event.target.files;
+        let filename = files[0].name;
+        if(filename.lastIndexOf('.')<=0){
+          return alert('Enter Valid File, with Extension .jpg, .jpeg, .png');
+        }
+        const fileReader = new FileReader();
+        fileReader.addEventListener('load',()=>{
+          this.profileImageUrl = fileReader.result;
+        });
+        fileReader.readAsDataURL(files[0]);
+        this.image = files[0];
+      }
+    },
   }
 </script>
