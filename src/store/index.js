@@ -32,6 +32,14 @@ export const store = new Vuex.Store({
         destinationLocation:'',
         timeStamp:''
       }],
+      adminstrator:[{
+        firstName:'',
+        lastName:'',
+        emailAddress:'',
+        phoneNumber:'',
+        authenticationPassword:'',
+        profileImageUrl:''
+      }],
       user:null,
       loading:false,
       error:null,
@@ -82,11 +90,27 @@ export const store = new Vuex.Store({
       setCustomers(state,payload){
         state.customers = payload;
     },
+      setAdminstrator(state,payload){
+        state.adminstrator = payload;
+      },
       setProfileImageUrl(state,payload){
         state.profileImageUrl = payload;
       }
   },
   actions:{
+      async onCreateAdminstrator({commit},payload){
+        try{
+          const filename = payload.image.name;
+          console.log(filename);
+          const extension = await filename.slice(filename.lastIndexOf('.'));
+          const fileData = await firebase.storage().ref('admins/'+payload.firstName+'.'+extension).put(payload.image);
+          const imagePath = await fileData.metadata.fullPath;
+          const downloadableUrl = firebase.storage().ref().child(imagePath).getDownloadURL();
+          //commit('setProfileImageUrl',downloadableUrl);
+        }catch (e) {
+          console.log(e.message);
+        }
+      },
       async onFetchCustomerList({commit}){
         let response;
         try{

@@ -46,7 +46,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog = false" >Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false":disabled="!validateForm">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="onCreateAdmin":disabled="!validateForm">Save</v-btn>
         </v-card-actions>
         <v-progress-linear :indeterminate="true" v-if="loading"></v-progress-linear>
 
@@ -94,6 +94,13 @@
         });
         fileReader.readAsDataURL(files[0]);
         this.image = files[0];
+      },
+      onCreateAdmin(){
+        const adminData = {
+          image:this.image,
+          firstName:this.firstName
+        };
+        this.$store.dispatch('onCreateAdminstrator',adminData);
       }
     },
   }
