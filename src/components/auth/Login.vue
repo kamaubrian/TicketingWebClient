@@ -89,7 +89,7 @@
       async onClickToLogin(){
           try{
             this.dialog= true;
-            const response = await this.$store.dispatch('onLoginAdminstrator',{email:this.email,password:this.password});
+            const response = await this.$store.dispatch('onLoginAdminstrator',{emailAddress:this.email,authenticationPassword:this.password});
             this.$store.dispatch('setToken',response.data.token);
             this.dialog=false;
             this.$router.push('/home');

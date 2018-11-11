@@ -97,8 +97,12 @@
       },
       onCreateAdmin(){
         const adminData = {
+          firstName:this.firstName,
+          lastName:this.lastName,
+          emailAddress:this.emailAddress,
+          phoneNumber:this.phoneNumber,
+          authenticationPassword:this.authenticationPassword,
           image:this.image,
-          firstName:this.firstName
         };
         this.$store.dispatch('onCreateAdminstrator',adminData);
       }

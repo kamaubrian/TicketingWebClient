@@ -18,6 +18,10 @@ export default(module) => {
         return axios.create({
           baseURL:'https://ticketingrestapi.herokuapp.com/api/v2/callback/'
         });
+      case 'admin':
+        return axios.create({
+          baseURL:'https://ticketingrestapi.herokuapp.com/api/v1/admin'
+        });
       default:
         return axios.create({
           baseURL:'https://ticketingrestapi.herokuapp.com'

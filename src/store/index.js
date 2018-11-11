@@ -95,20 +95,49 @@ export const store = new Vuex.Store({
       },
       setProfileImageUrl(state,payload){
         state.profileImageUrl = payload;
+      },
+      clearPayments(state){
+        state.payments=null;
+      },
+      clearCustomers(state){
+        state.customers = null
+      },
+      clearAdminstrator(state){
+        state.adminstrator = null;
+      },
+      clearSchedules(state){
+        state.loadedSchedules = null;
       }
   },
   actions:{
       async onCreateAdminstrator({commit},payload){
         try{
+          commit('clearError');
+          commit('setLoading',true);
           const filename = payload.image.name;
           console.log(filename);
           const extension = await filename.slice(filename.lastIndexOf('.'));
-          const fileData = await firebase.storage().ref('admins/'+payload.firstName+'.'+extension).put(payload.image);
+          const fileData = await firebase.storage().ref('admins/'+payload.firstName+new Date().toISOString()+extension).put(payload.image);
           const imagePath = await fileData.metadata.fullPath;
-          const downloadableUrl = firebase.storage().ref().child(imagePath).getDownloadURL();
+          const downloadableUrl = await firebase.storage().ref().child(imagePath).getDownloadURL();
+          const adminstrator ={
+            emailAddress:payload.emailAddress,
+            authenticationPassword:payload.authenticationPassword,
+            firstName:payload.firstName,
+            lastName:payload.lastName,
+            phoneNumber: payload.phoneNumber,
+            profileImageUrl:downloadableUrl
+          };
+          console.log(downloadableUrl);
+          const response = await api('admin').post('/',adminstrator);
+          commit('setAdminstrator',response.data.admin);
+          console.log(response);
+          commit('setLoading',false);
           //commit('setProfileImageUrl',downloadableUrl);
         }catch (e) {
           console.log(e.message);
+          commit('setLoading',false);
+          commit('setError',e);
         }
       },
       async onFetchCustomerList({commit}){
@@ -131,9 +160,10 @@ export const store = new Vuex.Store({
           try{
             commit('setLoading',true);
             commit('clearError');
-            response = await api('user_v2').post('/auth/',payload);
-            commit('setProfileImageUrl',response.data.profileImageUrl);
+            response = await api('admin').post('/auth/',payload);
+            commit('setProfileImageUrl',response.data.adminFound.profileImageUrl);
             commit('setLoading',false);
+            commit('setAdminstrator',response.data.adminFound);
             commit('setToken',response.data.token);
           }catch (e) {
 
@@ -280,6 +310,11 @@ export const store = new Vuex.Store({
       },
       onLogout({commit}){
         commit('onClearToken');
+        commit('clearError');
+        commit('clearSchedules');
+        commit('clearCustomers');
+        commit('clearAdminstrator');
+        commit('clearPayments');
       },
       setToken({commit},payload){
         commit('setToken',payload);
