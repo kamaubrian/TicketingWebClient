@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <link rel="shortcut icon" :href="fetchLogo" />
     <div v-if="isUserAuthenticated">
     <v-navigation-drawer
       :mini-variant.sync="miniVariant"
@@ -179,7 +180,8 @@ export default {
           {icon:'person',title:'Administrator Profile',link:'/admin-profile'},
           {icon:'schedule', title:'Bus Schedules', link:'/schedule'},
           {icon:'people', title:'Our Clientele', link:'/customers'},
-          {icon:'attach_money', title:'Tickets Payments', link:'/payments'}
+          {icon:'attach_money', title:'Tickets Payments', link:'/payments'},
+          {icon:'directions_bus',title:'Bus Analytics',link:'/bus_schedules'}
         ]
       }
       return menuItems;
