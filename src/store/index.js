@@ -53,7 +53,8 @@ export const store = new Vuex.Store({
         creationTime:'',
         lastSignInTime:''
       }],
-      profileImageUrl:''
+      profileImageUrl:'',
+      successAddingAdminstrator:''
     },
 
   mutations:{
@@ -107,9 +108,18 @@ export const store = new Vuex.Store({
       },
       clearSchedules(state){
         state.loadedSchedules = null;
+      },
+      setSuccessCreatingAdminstrator(state,payload){
+        state.successAddingAdminstrator = payload;
+      },
+      unSetSuccessMessage(state){
+        state.successAddingAdminstrator = false;
       }
   },
   actions:{
+      onUnSetAddingAdminstrator({commit}){
+        commit('unSetSuccessMessage');
+      },
       async onCreateAdminstrator({commit},payload){
         try{
           commit('clearError');
@@ -133,6 +143,7 @@ export const store = new Vuex.Store({
           //commit('setAdminstrator',response.data.admin);
           console.log(response);
           commit('setLoading',false);
+          commit('setSuccessCreatingAdminstrator',true);
           //commit('setProfileImageUrl',downloadableUrl);
         }catch (e) {
           console.log(e.message);

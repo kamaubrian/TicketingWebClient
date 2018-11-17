@@ -54,7 +54,6 @@
         <v-progress-linear :indeterminate="true" v-if="loading"></v-progress-linear>
       </v-card>
     </v-dialog>
-
   </v-layout>
 </template>
 <script>
@@ -73,7 +72,9 @@
       x: null,
       mode: '',
       timeout: 6000,
-      text: 'Hello, I\'m a snackbar'
+      text: 'Hello, I\'m a snackbar',
+      color:'green',
+      snackbarText:'Adminstrator Added Successfully'
     }),
     computed:{
       loading(){
@@ -115,7 +116,6 @@
             image: this.image,
           };
           const response = await this.$store.dispatch('onCreateAdminstrator', adminData);
-          this.snackbar=true;
           this.dialog = false;
 
         }catch (e) {

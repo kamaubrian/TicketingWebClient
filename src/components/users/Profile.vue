@@ -107,26 +107,20 @@
          </v-tabs-items>
        </v-tabs>
       </v-card-text>
-      <v-snackbar
-        v-model="snackbar"
-        :bottom="y === 'bottom'"
-        :left="x === 'left'"
-        :multi-line="mode === 'multi-line'"
-        :right="x === 'right'"
-        :timeout="timeout"
-        :top="y === 'top'"
-        :vertical="mode === 'vertical'"
-      >
-        {{ text }}
-        <v-btn
-          color="pink"
-          flat
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </v-snackbar>
     </v-card>
+    <v-snackbar
+      :timeout="8000"
+      top
+      right
+      :color="color"
+      v-model="snackbar"
+      v-if="success ? snackbar = true : snackbar=false"
+    >
+      {{ snackbarText }}
+      <v-btn dark flat @click.native="snackbar = false" icon>
+        <v-icon>close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </v-layout>
 </v-container>
 </template>
@@ -151,14 +145,22 @@
         x: null,
         mode: '',
         timeout: 6000,
-        text: 'Hello, I\'m a snackbar'
+        text: 'Hello, I\'m a snackbar',
+        color:'green',
+        snackbarText:'Created Adminstrator Successfully'
 
       }
     },
     computed:{
       fetchProfileImage(){
         return this.$store.state.profileImageUrl;
+      },
+      success(){
+        return this.$store.state.successAddingAdminstrator;
       }
+    },
+    mounted(){
+      this.$store.dispatch('onUnSetAddingAdminstrator');
     }
   }
 </script>

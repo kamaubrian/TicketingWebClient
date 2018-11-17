@@ -42,13 +42,21 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
   </v-layout>
 </template>
 <script>
   export default{
     data(){
       return {
-        dialog:false
+        dialog:false,
+        snackbar:'',
+        snackbarText:'',
+        color:'green'
+      }
+    },
+    computed:{
+      success(){
       }
     }
   }

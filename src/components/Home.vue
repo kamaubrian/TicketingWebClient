@@ -5,7 +5,7 @@
       <mini-statistic
         icon="fa fa-home"
       title="Cost"
-      :sub-title="mortageCost"
+      :sub-title="mortgageCost"
       color="indigo">
       </mini-statistic>
     </v-flex>
