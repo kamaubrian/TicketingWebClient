@@ -26,7 +26,7 @@
     props:{
       icon:String,
       title:String,
-      subTitle:String,
+      subTitle:Number,
       color:String
     }
   };

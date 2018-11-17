@@ -47,7 +47,6 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click="dialog = false" >Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="snackbar = true" >Snack</v-btn>
 
           <v-btn color="blue darken-1" flat @click.native="onCreateAdmin":disabled="!validateForm">Save</v-btn>
         </v-card-actions>

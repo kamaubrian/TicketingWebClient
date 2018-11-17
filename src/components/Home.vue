@@ -3,9 +3,9 @@
   <v-layout row wrap>
     <v-flex lg3 sm6 xs12>
       <mini-statistic
-        icon="fa fa-home"
-      title="Cost"
-      :sub-title="mortgageCost"
+        icon="fa fa-users"
+      title="Customers"
+      :sub-title="clienteleCount"
       color="indigo">
       </mini-statistic>
     </v-flex>
@@ -183,6 +183,7 @@
     data: function() {
       return {
         mortgageCost:'5000k',
+        clienteleCount:'',
         chartOptions: {
           chart: {
             id: 'vuechart-example'
@@ -194,9 +195,22 @@
         series: [{
           name: 'series-1',
           data: [30, 40, 45, 50, 49, 60, 70, 91]
-        }]
-
+        }],
+        customers:[
+          {
+            uid:'',
+            emailAddress:'',
+            phoneNumber:'',
+            creationTime:'',
+            lastSignInTime:''
+          }
+        ]
       }
+    },
+    created(){
+      this.$store.dispatch('onFetchCustomerList');
+      this.customers = this.$store.state.customers;
+      this.clienteleCount = this.customers.length;
     }
   }
 </script>
