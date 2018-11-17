@@ -13,6 +13,7 @@ import VueApexCharts from 'vue-apexcharts'
 import SettingsComponent from './components/settings/Settings'
 import AddUser from './components/users/AddUser'
 import AddAdminstrator from './components/users/admin/AddAdminstrator'
+import Statistic from './components/utils/Statistic'
 
 Vue.use(Vuetify, { theme: {
   primary: '#5F9EA0',
@@ -31,6 +32,7 @@ Vue.component('app-alert',AlertComponent);
 Vue.component('settings-view',SettingsComponent);
 Vue.component('add-user',AddUser);
 Vue.component('add-admin',AddAdminstrator);
+Vue.component('mini-statistic',Statistic);
 
 sync(store,router);
 new Vue({
