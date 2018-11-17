@@ -104,6 +104,20 @@
                </v-card-text>
              </v-card>
            </v-tab-item>
+           <v-tab-item id="tab-2">
+             <v-card flat>
+               <v-card-text>
+                 <v-list two-line class="pa-0">
+                   <v-list-tile href="#">
+                     <v-list-tile-action>
+                       <v-icon color="indigo">work</v-icon>
+                     </v-list-tile-action>
+                   </v-list-tile>
+                 </v-list>
+
+               </v-card-text>
+             </v-card>
+           </v-tab-item>
          </v-tabs-items>
        </v-tabs>
       </v-card-text>
