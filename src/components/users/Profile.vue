@@ -121,6 +121,19 @@
         <v-icon>close</v-icon>
       </v-btn>
     </v-snackbar>
+    <v-snackbar
+      :timeout="8000"
+      top
+      right
+      :color="colorRed"
+      v-model="snackbarError"
+      v-if="error ? snackbarError = true : snackbarError=false"
+    >
+      {{ error.message }} Adminstrator Already Exists
+      <v-btn dark flat @click.native="snackbarError = false" icon>
+        <v-icon>close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </v-layout>
 </v-container>
 </template>
@@ -141,12 +154,14 @@
         selectedTab: null,
         adminstrator:null,
         snackbar: false,
+        snackbarError:false,
         y: 'bottom',
         x: null,
         mode: '',
         timeout: 6000,
         text: 'Hello, I\'m a snackbar',
         color:'green',
+        colorRed:'red',
         snackbarText:'Created Adminstrator Successfully'
 
       }
@@ -157,10 +172,18 @@
       },
       success(){
         return this.$store.state.successAddingAdminstrator;
+      },
+      error(){
+        return this.$store.state.error;
       }
     },
     mounted(){
       this.$store.dispatch('onUnSetAddingAdminstrator');
+      this.$store.dispatch('clearErrors');
+    },
+    created(){
+      this.$store.dispatch('onUnSetAddingAdminstrator');
+      this.$store.dispatch('clearErrors');
     }
   }
 </script>
