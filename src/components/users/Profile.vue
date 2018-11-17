@@ -110,9 +110,10 @@
                  <span class="title">Logs</span>
                  <v-spacer></v-spacer>
                  <v-btn   :outline="interval == null"
-                          :color="interval == null ? 'white' : 'primary'"
+                          color="primary"
                           dark
                           depressed
+                          flat
                           @click="interval == null ? start() : stop()">Real Time Logging</v-btn>
                </v-card-title>
                <v-card-text class="py-0">
