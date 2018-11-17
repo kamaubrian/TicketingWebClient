@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import 'font-awesome/css/font-awesome.css'
 import * as firebase from 'firebase'
 import {store} from './store'
 import AlertComponent from './components/utils/Alert';

@@ -105,16 +105,39 @@
              </v-card>
            </v-tab-item>
            <v-tab-item id="tab-2">
-             <v-card flat>
-               <v-card-text>
-                 <v-list two-line class="pa-0">
-                   <v-list-tile href="#">
-                     <v-list-tile-action>
-                       <v-icon color="indigo">work</v-icon>
-                     </v-list-tile-action>
-                   </v-list-tile>
-                 </v-list>
-
+             <v-card flat  contentBg="white">
+               <v-card-title>
+                 <span class="title">Logs</span>
+                 <v-spacer></v-spacer>
+                 <v-btn   :outline="interval == null"
+                          :color="interval == null ? 'white' : 'primary'"
+                          dark
+                          depressed
+                          @click="interval == null ? start() : stop()">Real Time Logging</v-btn>
+               </v-card-title>
+               <v-card-text class="py-0">
+                 <v-timeline dense>
+                   <v-slide-x-reverse-transition
+                     group
+                     hide-on-leave
+                   >
+                     <v-timeline-item
+                       v-for="item in items"
+                       :key="item.id"
+                       :color="item.color"
+                       small
+                       fill-dot
+                     >
+                       <v-alert
+                         :value="true"
+                         :color="item.color"
+                         :icon="item.icon"
+                       >
+                         Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
+                       </v-alert>
+                     </v-timeline-item>
+                   </v-slide-x-reverse-transition>
+                 </v-timeline>
                </v-card-text>
              </v-card>
            </v-tab-item>
@@ -152,7 +175,20 @@
 </v-container>
 </template>
 <script>
+  const COLORS = [
+    'info',
+    'warning',
+    'error',
+    'success'
+  ]
+  const ICONS = {
+    info: 'mdi-information',
+    warning: 'mdi-alert',
+    error: 'mdi-alert-circle',
+    success: 'mdi-check-circle'
+  }
   export default{
+
     data(){
       return{
         direction: 'top',
@@ -176,9 +212,20 @@
         text: 'Hello, I\'m a snackbar',
         color:'green',
         colorRed:'red',
-        snackbarText:'Created Adminstrator Successfully'
-
+        snackbarText:'Created Adminstrator Successfully',
+        interval:null,
+        items:[
+          {
+            id:1,
+            color: 'info',
+            icon:ICONS['info']
+          }
+        ],
+        nonce:2
       }
+    },
+    beforeDestroy(){
+      this.stop()
     },
     computed:{
       fetchProfileImage(){
@@ -198,6 +245,48 @@
     created(){
       this.$store.dispatch('onUnSetAddingAdminstrator');
       this.$store.dispatch('clearErrors');
+    },
+    methods:{
+      addEvent () {
+        let { color, icon } = this.genAlert()
+
+        const previousColor = this.items[0].color
+
+        while (previousColor === color) {
+          color = this.genColor()
+        }
+
+        this.items.unshift({
+          id: this.nonce++,
+          color,
+          icon
+        })
+
+        if (this.nonce > 6) {
+          this.items.pop()
+        }
+      },
+      genAlert () {
+        const color = this.genColor()
+
+        return {
+          color,
+          icon: this.genIcon(color)
+        }
+      },
+      genColor () {
+        return COLORS[Math.floor(Math.random() * 3)]
+      },
+      genIcon (color) {
+        return ICONS[color]
+      },
+      start () {
+        this.interval = setInterval(this.addEvent, 3000)
+      },
+      stop () {
+        clearInterval(this.interval)
+        this.interval = null
+      }
     }
   }
 </script>
