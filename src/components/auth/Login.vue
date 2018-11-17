@@ -3,7 +3,6 @@
     <v-container fluid fill-height>
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4 lg4>
-          <app-alert @dismissed="onDismissed" :text="error" v-if="error"></app-alert>
           <v-card class="elevation-10 pa-3">
             <v-card-text>
               <div class="layout column align-center">
@@ -54,6 +53,19 @@
               <img v-bind:src="fetchLogo" height="50" alt="MetroTrans Inc." class="mt-3">
             </div>
           </v-card>
+          <v-snackbar
+            :timeout="8000"
+            top
+            right
+            :color="color"
+            v-model="snackbar"
+            v-if="error ? snackbar = true : snackbar=false"
+          >
+            {{ snackbarText ? snackbarText = error: snackbarText }}
+            <v-btn dark flat @click.native="snackbar = false" icon>
+              <v-icon>close</v-icon>
+            </v-btn>
+          </v-snackbar>
         </v-flex>
       </v-layout>
     </v-container>
@@ -65,7 +77,10 @@
       return{
         email:'',
         password:'',
-        dialog:false
+        dialog:false,
+        color:'red',
+        snackbar :false,
+        snackbarText:'Invalid Credentials'
       }
     },
     computed:{

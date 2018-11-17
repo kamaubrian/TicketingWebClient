@@ -1,6 +1,16 @@
 <template>
 <v-container grid-list-md fluid>
   <v-layout row wrap>
+    <v-flex lg3 sm6 xs12>
+      <mini-statistic
+        icon="fa fa-home"
+      title="Cost"
+      :sub-title="mortageCost"
+      color="indigo">
+      </mini-statistic>
+    </v-flex>
+  </v-layout>
+  <v-layout row wrap>
     <v-flex xs12 sm4>
       <v-hover>
       <v-card
@@ -172,6 +182,7 @@
     },
     data: function() {
       return {
+        mortgageCost:'5000k',
         chartOptions: {
           chart: {
             id: 'vuechart-example'
