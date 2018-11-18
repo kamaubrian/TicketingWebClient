@@ -211,6 +211,11 @@
       this.$store.dispatch('onFetchCustomerList');
       this.customers = this.$store.state.customers;
       this.clienteleCount = this.customers.length;
+    },
+    mounted(){
+      this.$store.dispatch('onFetchCustomerList');
+      this.customers = this.$store.state.customers;
+      this.clienteleCount = this.customers.length;
     }
   }
 </script>
