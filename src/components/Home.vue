@@ -1,12 +1,36 @@
 <template>
 <v-container grid-list-md fluid>
   <v-layout row wrap>
-    <v-flex lg3 sm6 xs12>
+    <v-flex lg3 sm6 xs12 class="mb-4">
       <mini-statistic
         icon="fa fa-users"
       title="Customers"
       :sub-title="clienteleCount"
       color="indigo">
+      </mini-statistic>
+    </v-flex>
+    <v-flex lg3 sm6 xs12>
+      <mini-statistic
+        icon="fa fa-bus"
+        title="Buses"
+        :sub-title="clienteleCount"
+        color="green">
+      </mini-statistic>
+    </v-flex>
+    <v-flex lg3 sm6 xs12>
+      <mini-statistic
+        icon="fa fa-money"
+        title="Revenue"
+        :sub-title="revenueCount"
+        color="grey">
+      </mini-statistic>
+    </v-flex>
+    <v-flex lg3 sm6 xs12>
+      <mini-statistic
+        icon="fa fa-bar-chart"
+        title="Payments"
+        :sub-title="revenueCount"
+        color="red darken-3">
       </mini-statistic>
     </v-flex>
   </v-layout>
@@ -183,6 +207,7 @@
     data: function() {
       return {
         mortgageCost:'5000k',
+        revenueCount:'150k',
         clienteleCount:'',
         chartOptions: {
           chart: {
