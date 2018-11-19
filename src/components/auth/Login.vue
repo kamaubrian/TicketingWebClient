@@ -94,7 +94,7 @@
     },
     computed:{
       isFormValid(){
-        return this.email !== '' && this.password!==''
+        return this.email !== '' && this.password!== ''
       },
       isLoading(){
         return this.$store.getters.loading
@@ -130,14 +130,14 @@
         this.$store.dispatch('clearErrors');
       }
     },
-    mounted(){
+   /* mounted(){
         this.$store.dispatch('clearErrors');
         if(this.isUserAuthenticated){
           this.$router.push('/schedule')
         }else{
           this.$router.push('/');
         }
-      },
+      },*/
     watch:{
 
     }

@@ -21,7 +21,7 @@
       <mini-statistic
         icon="fa fa-money"
         title="Revenue"
-        :sub-title="revenueCount"
+        :sub-title="clienteleCount"
         color="grey">
       </mini-statistic>
     </v-flex>
@@ -29,7 +29,7 @@
       <mini-statistic
         icon="fa fa-bar-chart"
         title="Payments"
-        :sub-title="revenueCount"
+        :sub-title="clienteleCount"
         color="red darken-3">
       </mini-statistic>
     </v-flex>

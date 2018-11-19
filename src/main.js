@@ -55,7 +55,6 @@ new Vue({
     if(this.$store.state.token !==null && this.$store.state.token !==undefined){
       this.$router.push('/home');
 
-
     }
   }
 
