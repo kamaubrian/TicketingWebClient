@@ -80,7 +80,16 @@
         dialog:false,
         color:'red',
         snackbar :false,
-        snackbarText:'Invalid Credentials'
+        snackbarText:'Invalid Credentials',
+        customers:[
+          {
+            uid:'',
+            emailAddress:'',
+            phoneNumber:'',
+            creationTime:'',
+            lastSignInTime:''
+          }
+        ]
       }
     },
     computed:{
@@ -107,6 +116,9 @@
             const response = await this.$store.dispatch('onLoginAdminstrator',{emailAddress:this.email,authenticationPassword:this.password});
             this.$store.dispatch('setToken',response.data.token);
             this.dialog=false;
+            this.$store.dispatch('onFetchCustomerList');
+            this.customers = this.$store.state.customers;
+            this.clienteleCount = this.customers.length;
             this.$router.push('/home');
             console.log(response);
           }catch (e) {

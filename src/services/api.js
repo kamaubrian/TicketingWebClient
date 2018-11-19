@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import store from '../store/index'
 export default(module) => {
     switch(module){
       case 'user':
@@ -21,6 +21,13 @@ export default(module) => {
       case 'admin':
         return axios.create({
           baseURL:'https://ticketingrestapi.herokuapp.com/api/v1/admin'
+        });
+      case 'bus':
+        return axios.create({
+          baseURL:'https://ticketingrestapi.herokuapp.com/api/v3/bus',
+          headers:{
+            Authorization:`Bearer ${store.state.token}`
+          }
         });
       default:
         return axios.create({
