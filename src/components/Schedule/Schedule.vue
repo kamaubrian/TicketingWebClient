@@ -274,10 +274,19 @@
 
 
     },
-    mounted(){
-      this.$store.dispatch('loadSchedule');
-      this.schedules = this.$store.state.loadedSchedules;
+    async mounted(){
+      await this.$store.dispatch('loadSchedule');
+      this.schedules = await this.$store.state.loadedSchedules;
     },
+    async created(){
+      await this.$store.dispatch('loadSchedule');
+      this.schedules = await this.$store.state.loadedSchedules;
+    },
+    async beforeCreate(){
+      await this.$store.dispatch('loadSchedule');
+      this.schedules = await this.$store.state.loadedSchedules;
+    },
+
     watch:{
       geocodeLocation:_.debounce(async function(value){
         let location;

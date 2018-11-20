@@ -118,6 +118,7 @@ export const store = new Vuex.Store({
   },
   actions:{
       onUnSetAddingAdminstrator({commit}){
+
         commit('unSetSuccessMessage');
       },
       async onCreateAdminstrator({commit},payload){
@@ -179,7 +180,7 @@ export const store = new Vuex.Store({
           }catch (e) {
 
             commit('setLoading',false);
-            commit('setError','Incorrect Credentials');
+            commit('setError',e.message);
           }
           return response;
       },

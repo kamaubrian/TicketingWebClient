@@ -82,9 +82,17 @@
         ]
       }
     },
-    mounted(){
-      this.$store.dispatch('onFetchPaymentsFromFirebase');
-      this.payments = this.$store.state.payments;
+    async mounted(){
+      await this.$store.dispatch('onFetchPaymentsFromFirebase');
+      this.payments = await this.$store.state.payments;
+    },
+    async beforeMount(){
+      await this.$store.dispatch('onFetchPaymentsFromFirebase');
+      this.payments = await this.$store.state.payments;
+    },
+    async created(){
+      await  this.$store.dispatch('onFetchPaymentsFromFirebase');
+      this.payments = await this.$store.state.payments;
     },
 
     computed:{

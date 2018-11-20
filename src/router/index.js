@@ -30,7 +30,7 @@ export default new Router({
       beforeEnter:auth
     },
     {
-      path:'/home',
+      path:'/home-dash',
       name:'Home',
       component:Home,
       beforeEnter:auth

@@ -89,9 +89,9 @@
         ]
       }
     },
-    mounted(){
-      this.$store.dispatch('onFetchCustomerList');
-      this.customers =this.$store.state.customers;
+    async  mounted(){
+     await this.$store.dispatch('onFetchCustomerList');
+      this.customers = await this.$store.state.customers;
       console.log(this.$store.state.customers);
     },
     computed:{

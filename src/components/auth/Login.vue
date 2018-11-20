@@ -116,10 +116,8 @@
             const response = await this.$store.dispatch('onLoginAdminstrator',{emailAddress:this.email,authenticationPassword:this.password});
             this.$store.dispatch('setToken',response.data.token);
             this.dialog=false;
-            this.$store.dispatch('onFetchCustomerList');
-            this.customers = this.$store.state.customers;
-            this.clienteleCount = this.customers.length;
-            this.$router.push('/home');
+            this.$router.push('/home-dash');
+
             console.log(response);
           }catch (e) {
             console.log(e.message);
@@ -130,16 +128,14 @@
         this.$store.dispatch('clearErrors');
       }
     },
-   /* mounted(){
+    mounted(){
         this.$store.dispatch('clearErrors');
         if(this.isUserAuthenticated){
-          this.$router.push('/schedule')
+          this.$router.push('/home-dash')
         }else{
           this.$router.push('/');
         }
-      },*/
-    watch:{
+      },
 
-    }
   }
 </script>

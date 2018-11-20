@@ -208,7 +208,7 @@
       return {
         mortgageCost:'5000k',
         revenueCount:'150k',
-        clienteleCount:'',
+        clienteleCount:null,
         chartOptions: {
           chart: {
             id: 'vuechart-example'
@@ -232,15 +232,20 @@
         ]
       }
     },
-    created(){
-      this.$store.dispatch('onFetchCustomerList');
-      this.customers = this.$store.state.customers;
-      this.clienteleCount = this.customers.length;
+    async created(){
+     await this.$store.dispatch('onFetchCustomerList');
+      this.customers = await this.$store.state.customers;
+      this.clienteleCount = await this.customers.length;
     },
-    mounted(){
-      this.$store.dispatch('onFetchCustomerList');
-      this.customers = this.$store.state.customers;
-      this.clienteleCount = this.customers.length;
+    async mounted(){
+     await  this.$store.dispatch('onFetchCustomerList');
+      this.customers = await this.$store.state.customers;
+      this.clienteleCount = await  this.customers.length;
+    },
+    async beforeMount(){
+      await  this.$store.dispatch('onFetchCustomerList');
+      this.customers = await this.$store.state.customers;
+      this.clienteleCount = await  this.customers.length;
     }
   }
 </script>
