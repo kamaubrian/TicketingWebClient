@@ -181,7 +181,7 @@ export default {
           {icon:'schedule', title:'Bus Schedules', link:'/schedule'},
           {icon:'people', title:'Our Clientele', link:'/customers'},
           {icon:'attach_money', title:'Tickets Payments', link:'/payments'},
-          {icon:'directions_bus',title:'Bus Analytics',link:'/bus-check'}
+          {icon:'drive_eta',title:'Driving School',link:'/students'}
         ]
       }
       return menuItems;

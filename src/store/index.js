@@ -183,7 +183,8 @@ export const store = new Vuex.Store({
           commit('clearError');
           commit('setLoading',true);
           response = await api('student').get('/get-all');
-          commit('setLoadedStudents',response.data);
+          commit('setLoadedStudents',response.data.batchStudents);
+          console.log(response.data);
           commit('setLoading',false);
         }catch(error){
           commit('setError',error);
