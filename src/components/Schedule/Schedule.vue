@@ -282,7 +282,7 @@
       await this.$store.dispatch('loadSchedule');
       this.schedules = await this.$store.state.loadedSchedules;
     },
-    async beforeCreate(){
+    async beforeMount(){
       await this.$store.dispatch('loadSchedule');
       this.schedules = await this.$store.state.loadedSchedules;
     },
@@ -296,6 +296,5 @@
         this.geocodeLongitude = this.$store.getters.longitude;
       },1500)
     }
-
   }
 </script>
