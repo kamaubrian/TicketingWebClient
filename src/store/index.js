@@ -53,6 +53,13 @@ export const store = new Vuex.Store({
         creationTime:'',
         lastSignInTime:''
       }],
+      student:[{
+        firstName:'',
+        lastName:'',
+        emailAddress:'',
+        phoneNumber:'',
+        timeStamp:''
+      }],
       profileImageUrl:'',
       successAddingAdminstrator:''
     },
@@ -75,6 +82,9 @@ export const store = new Vuex.Store({
       },
       setLoadedSchedules(state,payload){
         state.loadedSchedules=payload;
+      },
+      setLoadedStudents(state,payload){
+        state.student = payload;
       },
       setLoadedPayments(state,payload){
         state.payments=payload;
@@ -118,10 +128,9 @@ export const store = new Vuex.Store({
   },
   actions:{
       onUnSetAddingAdminstrator({commit}){
-
         commit('unSetSuccessMessage');
       },
-      async onCreateAdminstrator({commit},payload){
+    async onCreateAdminstrator({commit},payload){
         try{
           commit('clearError');
           commit('setLoading',true);
@@ -152,7 +161,8 @@ export const store = new Vuex.Store({
           commit('setError',e);
         }
       },
-      async onFetchCustomerList({commit}){
+
+    async onFetchCustomerList({commit}){
         let response;
         try{
           commit('clearError');
@@ -167,7 +177,21 @@ export const store = new Vuex.Store({
         }
       },
 
-      async onLoginAdminstrator({commit},payload){
+    async onFetchAllStudents({commit}){
+        let response;
+        try{
+          commit('clearError');
+          commit('setLoading',true);
+          response = await api('student').get('/get-all');
+          commit('setLoadedStudents',response.data);
+          commit('setLoading',false);
+        }catch(error){
+          commit('setError',error);
+          commit('setLoading',false);
+        }
+    },
+
+    async onLoginAdminstrator({commit},payload){
         let response;
           try{
             commit('setLoading',true);
@@ -184,7 +208,8 @@ export const store = new Vuex.Store({
           }
           return response;
       },
-      async onFetchGeolocation({commit},payload){
+
+    async onFetchGeolocation({commit},payload){
         let response;
         try{
           commit('clearError');
@@ -196,7 +221,8 @@ export const store = new Vuex.Store({
           commit('setError',e.message);
         }
       },
-      async onGetPayments({commit}){
+
+    async onGetPayments({commit}){
         let response;
         try{
           commit('setLoading',true);
@@ -210,7 +236,8 @@ export const store = new Vuex.Store({
           commit('setLoading',false);
         }
       },
-      async onFetchPaymentsFromFirebase({commit}){
+
+    async onFetchPaymentsFromFirebase({commit}){
         let response;
         try{
           commit('setLoading',true);
@@ -262,7 +289,7 @@ export const store = new Vuex.Store({
         //commit('setLoading',false);
       }
     },
-      onCreateSchedule({commit,getters},payload){
+    onCreateSchedule({commit,getters},payload){
         commit('setLoading',true);
         commit('clearError');
         const schedule = {
@@ -290,7 +317,7 @@ export const store = new Vuex.Store({
           })
 
       },
-      loadSchedule({commit}){
+    loadSchedule({commit}){
         commit('setLoading',true);
         firebase.database().ref('Schedule').once('value')
           .then(data=>{
@@ -362,6 +389,9 @@ export const store = new Vuex.Store({
     },
     profileImageUrl(state){
         return state.profileImageUrl;
+    },
+    onGetStudents(state){
+        return state.student;
     }
 
   }

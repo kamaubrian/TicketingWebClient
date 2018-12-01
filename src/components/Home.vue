@@ -186,7 +186,7 @@
           </v-card-title>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn flat to="/payments" color="primary">View Students</v-btn>
+            <v-btn flat to="/students" color="primary">View Students</v-btn>
           </v-card-actions>
         </v-card>
       </v-hover>

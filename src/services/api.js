@@ -35,10 +35,12 @@ export default(module) => {
             Authorization:`Bearer ${store.state.token}`
           }
         });
+
       case 'student':
         return axios.create({
           baseURL:'https://ticketingrestapi.herokuapp.com/api/v3/student'
         });
+
       default:
         return axios.create({
           baseURL:'https://ticketingrestapi.herokuapp.com/api/v1/docs'

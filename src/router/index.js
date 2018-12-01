@@ -7,6 +7,7 @@ import Payments from '@/components/transactions/Payments'
 import Customers from '@/components/users/Users'
 import Profile from '@/components/users/Profile'
 import Bus from '@/components/bus/Bus'
+import Student from '@/components/student/Students'
 import auth from './auth-guard'
 Vue.use(Router);
 
@@ -51,6 +52,12 @@ export default new Router({
       path:'/bus-check',
       name:'Bus',
       component:Bus,
+      beforeEnter:auth
+    },
+    {
+      path:'/students',
+      name:'Student',
+      component:Student,
       beforeEnter:auth
     }
   ],mode:'history'
