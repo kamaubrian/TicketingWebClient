@@ -105,7 +105,7 @@
           </v-card-title>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn flat color="primary">Manage System Admins.</v-btn>
+            <v-btn flat color="primary" to="/admin-profile">Manage System Admins.</v-btn>
           </v-card-actions>
         </v-card>
       </v-hover>

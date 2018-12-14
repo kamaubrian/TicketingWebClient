@@ -3,7 +3,7 @@
     <v-container fluid fill-height>
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4 lg4>
-          <v-card class="elevation-10 pa-3">
+          <v-card class="elevation-10 pa-3 rounded-card">
             <v-card-text>
               <div class="layout column align-center">
                 <img v-bind:src="fetchLogo" height="150" alt="MetroTrans Inc.">
@@ -139,3 +139,8 @@
 
   }
 </script>
+<style scoped>
+  .rounded-card{
+      border-radius: 15px;
+  }
+</style>
