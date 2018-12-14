@@ -49,7 +49,7 @@
                   </v-card>
                 </v-dialog>
             <div class="layout column align-center">
-              <span class="caption mt-5">All Rights Reserved 2018 &copy; </span>
+              <span class="caption mt-5">All Rights Reserved {{new Date().getFullYear()}} &copy; </span>
               <img v-bind:src="fetchLogo" height="50" alt="MetroTrans Inc." class="mt-3">
             </div>
           </v-card>

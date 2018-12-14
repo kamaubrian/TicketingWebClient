@@ -1,6 +1,6 @@
 <template>
   <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="600px" class="rounded-card">
       <v-btn slot="activator" class="green" dark flat fab small>
         <v-icon>add</v-icon>
       </v-btn>
@@ -124,3 +124,8 @@
     },
   }
 </script>
+<style scoped>
+  .rounded-card{
+    border-radius: 20px;
+  }
+</style>
