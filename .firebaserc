@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "metro-c7c33"
+    "default": "metro-c7c33",
+    "metro": "metro-c7c33"
   }
 }
