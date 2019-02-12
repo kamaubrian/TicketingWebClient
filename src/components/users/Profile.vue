@@ -58,6 +58,9 @@
          <v-tab ripple href="#tab-2">
            Activity
          </v-tab>
+         <v-tab ripple href="#tab-3">
+           Administrators
+         </v-tab>
          <v-tabs-items v-model="selectedTab">
            <v-tab-item id="tab-1">
              <v-card flat>
@@ -141,6 +144,9 @@
                  </v-timeline>
                </v-card-text>
              </v-card>
+             <v-tab-item id="tab-3">
+
+             </v-tab-item>
            </v-tab-item>
          </v-tabs-items>
        </v-tabs>

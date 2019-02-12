@@ -15,6 +15,7 @@ import SettingsComponent from './components/settings/Settings'
 import AddUser from './components/users/AddUser'
 import AddAdminstrator from './components/users/admin/AddAdminstrator'
 import Statistic from './components/utils/Statistic'
+import _env from './env'
 
 Vue.use(Vuetify, { theme: {
   primary: '#5F9EA0',
@@ -44,12 +45,12 @@ new Vue({
   template: '<App/>',
   created(){
     firebase.initializeApp({
-      apiKey: process.env.apiKey,
-      authDomain: process.env.authDomain,
-      databaseURL: process.env.databaseURL,
-      projectId: process.env.projectId,
-      storageBucket: process.env.storageBucket,
-      messagingSenderId: process.env.messagingSenderId
+      apiKey: _env.apiKey,
+      authDomain: _env.authDomain,
+      databaseURL: _env.databaseURL,
+      projectId: _env.projectId,
+      storageBucket: _env.storageBucket,
+      messagingSenderId: _env.messagingSenderId
     });
 
     if(this.$store.state.token !==null && this.$store.state.token !==undefined){

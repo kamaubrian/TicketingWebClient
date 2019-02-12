@@ -75,7 +75,7 @@
     <v-content>
       <router-view/>
       <v-footer :fixed="fixed" app>
-        <span>MetroTrans Inc.&copy; 2018</span>
+        <span>MetroTrans Inc.&copy; {{new Date().getFullYear()}}</span>
         <v-spacer></v-spacer>
         <div class="text-xs-center">
           <v-rating :readonly="true" v-model="rating"></v-rating>
