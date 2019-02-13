@@ -26,7 +26,7 @@
               </v-form>
             </v-card-text>
                 <div class="text-xs-center mt-3">
-                  <v-btn :disabled="!isFormValid || isLoading"  @click="onClickToLogin" type="submit" class="primary">
+                  <v-btn :disabled="!isFormValid || isLoading"  @click="onClickToLogin" type="submit" class="primary" round>
                     LOGIN</v-btn>
                 </div>
                 <v-dialog

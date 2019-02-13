@@ -73,7 +73,7 @@
       timeout: 6000,
       text: 'Hello, I\'m a snackbar',
       color:'green',
-      snackbarText:'Adminstrator Added Successfully'
+      snackbarText:'Administrator Added Successfully'
     }),
     computed:{
       loading(){
