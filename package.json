@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "apexcharts": "^2.1.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "fast-crc32c": "^1.0.4",
     "firebase": "^5.5.1",
     "firebase-admin": "^6.0.0",
